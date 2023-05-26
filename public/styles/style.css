@@ -11,6 +11,21 @@ a {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  position: relative;
+  transition: all  .25s linear;
+}
+a span:hover {
+  color: red;
+}
+a span:hover::before {
+  content: "[";
+  /* position: absolute; */
+  transform: translateX(-20px);
+}
+a span:hover::after {
+  content: "]";
+  position: absolute;
+  right: -.5rem;
 }
 button {
   cursor: pointer;
@@ -25,6 +40,7 @@ header {
   color: beige;
   /* border-bottom: 2px solid #DDD5D5; */
   position: absolute;
+  top: 0;
   width: 100%;
   z-index: 10;
 }
@@ -53,14 +69,17 @@ section.hero {
   opacity: 0.8;
   height: 100%;
   object-fit: cover;
+  position: relative;
+  z-index: 1;
 }
 .video-container {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 100%;
-  background: #03a9f4;
+  background: #5bbce9;
   mix-blend-mode: overlay;
+  z-index: 2;
 }
 .hero-content {
   width: 70%;
@@ -68,6 +87,7 @@ section.hero {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10;
   display: flex;
   flex-direction: column;  
   justify-content: center;
@@ -99,11 +119,14 @@ section.hero {
   padding: .6rem;
   display: flex;
   flex-direction: row;
-  gap: .6rem;
+  flex-wrap: wrap;
+  column-gap: .6rem;
+  row-gap: 1.6rem;
 }
 .event-card {
   display: flex;
   flex-direction: column;
+  min-width: 30%;
   flex: 1;
   border: 1.5px solid rgba(43, 43, 43, .3);
   border-radius: 5px;
@@ -173,7 +196,6 @@ section.find-company {
 }
 section.itinerary {
   overflow: hidden;
-  background-color: black;
   width: 80%;
   margin: 0 auto;
   height: 500px;
@@ -183,17 +205,24 @@ section.itinerary {
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(8, 7rem);
   gap: 5px;
-  transform: rotate(45deg);
+  transform: rotate(45deg) scale(1.5);
   max-height: 32rem; 
+  overflow: hidden;
 }
 .gallery-img {
   background-color: aquamarine;
-  background-position: center;
+  /* transform: rotate(-45deg); */
+  /* background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
+}
+.gallery-img img {
+  /* transform: rotate(45deg); */
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 .gallery-images .img1 {
-  /* background-image: url(./assets/images/group.jpg); */
   grid-column: 1 / 3;
   grid-row: 1 / 3;
 }
@@ -213,7 +242,6 @@ section.itinerary {
   grid-row: 3 / 5;
 }
 .gallery-images .img5 {
-  /* background-image: url(./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg); */
   grid-column: 1 / 3;
   grid-row: 1 / 3;
 }
@@ -222,10 +250,12 @@ section.itinerary {
   grid-row: 1 / 3;
 }
 .gallery-images .img7 {
+  /* background-image: url(./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg); */
   grid-column: 4 / 6;
   grid-row: 3 / 5;
 }
 .gallery-images .img8 {
+  /* background-image: url(./assets/images/group.jpg); */
   grid-column: 1 / 7;
   grid-row: 5 / 7;
 }
@@ -235,4 +265,37 @@ footer {
   color: beige;
   text-align: center;
   padding: 2rem;
+}
+.plane {
+  width: 2rem;
+  display: inline-block;
+  transform: rotate(18deg);
+  max-width: 100vw;
+  overflow: hidden;
+}
+/* .animate-plane {
+  animation-duration: 5s;
+  animation-name: animate-plane;
+} */
+
+@keyframes animate-plane {
+  0% {
+    transform: scale(1) rotate(10deg);
+  }
+  5% {
+    transform: scale(1.25) rotate(-15deg);
+  }
+  10% {
+    transform: scale(1.5) rotate(5deg);
+  }
+  15% {
+    transform: scale(1.75) rotate(-10deg);
+  }
+  20% {
+    transform: scale(2) rotate(0);
+  }
+  100% {
+    transform: scale(10) translateX(100vw) translateY(-100vh) rotate(0);
+  }
+  
 }
