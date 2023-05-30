@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vivid Ventures</title>
+  <link rel="stylesheet" href="./styles/form.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background"></div>
+  <h1>Sign up</h1>
+  <form action="">
+    <div class="name">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name">
+    </div>
+    <div class="contact">
+      <label for="contact">Mobile number:</label>
+      <input type="text" name="contact" id="contact">
+    </div>
+    
+    <div class="email">
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email">
+    </div>
+    
+    <div class="password">
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password">
+    </div>
+    <div class="confirm-password">
+      <label for="rePassword">Confirm password:</label>
+      <input type="password" name="rePassword" id="rePassword">
+    </div>
+
+    <div class="date-of-birth">
+      <label for="date-of-birth">Date of birth:</label>
+      <input type="date" name="date-of-birth" id="date-of-birth">
+    </div>
+    <div>
+      <label>Gender:</l>
+      <div class="gender-radios">
+        <label for="male">Male</label>
+        <input type="radio" name="gender" value="male" id="male">
+        <label for="female">Female</label>
+        <input type="radio" name="gender" value="female" id="female">
+        <label for="other">Other</label>
+        <input type="radio" name="gender" value="other" id="other">
+      </div>
+    </div>
+    <div class="guide-bio">
+      <label for="guide-bio">Bio:</label>
+      <textarea name="bio" id="guide-bio" placeholder="Write something about your past experiences, trainings or qualifications..."></textarea>
+    </div>
+
+    <button class="submit-btn">
+      <div class="spin"></div>
+      <span>Submit</span>
+    </button>      
+    <!-- users can add places to their wishlist and based on that, groups can be recommended -->
+  </form>
+    
+</body>
+</html>
