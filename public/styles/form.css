@@ -82,7 +82,7 @@ input:focus {
 .gender-radios input {
   margin-right: .4rem;
 }
-.guide-bio {
+.guide-bio, .event-description {
   width: 100%;
 }
 form textarea {
@@ -119,7 +119,7 @@ button .spin {
   width: 0;
   height: 0;
   opacity: 0;
-  left: 70px;
+  left: 60px;
   top: 20px;
   transform: rotate(0deg);
   background: none;
@@ -127,14 +127,20 @@ button .spin {
   transition: all .4s ease-out;
 }
 button:hover .spin {
-  width: 150%;
-  height: 300%;
+  width: 170%;
+  height: 310%;
   opacity: 1;
-  left: -25px;
+  left: -30px;
   top: -30px;
   background: #fffeff;
   transform: rotate(80deg);
 }
 button:hover span {
   color: #2d3142;
+}
+.event-title {
+  min-width: 100%;
+}
+.event-image {
+  max-width: 100%;
 }
