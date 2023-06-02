@@ -5,20 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vivid Ventures</title>
-  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="../public/styles/style.css">
 </head>
 <body>
-  <header class="header event-page">
-    <strong class="logo"><a href="/">Vivid Ventures</a></strong>
-    <nav>
-      <ul>
-        <li><a href="./login.html"><span>Login</span></a></li>
-        <li><a href="./signup.html">Sign up</a></li>
-        <li><a href="#">Explore</a></li>
-        <li><a href="./events.html">Events</a></li>
-      </ul>
-    </nav>
-  </header>
+  <?php include('../templates/header.php') ?>
+
   <div class="event-container">
     <section class="event-info-section">
         <div class="image-container">
@@ -51,8 +42,10 @@
         </form>
       </div>
   </div>
-  <footer class="event-page-footer">
-    <span><a href="/">Vivid Ventures</a></span>
-  </footer>
+
+  <?php include('../templates/footer.php') ?>
+
+
+  <script src="./script.js"></script>
 </body>
 </html>

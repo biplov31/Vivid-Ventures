@@ -12,14 +12,14 @@
 </head>
 <body>
   <header class="index-page-header">
-    <div class="logo"></div>
+    <a href="../public/index.php"><div class="logo"></div></a>
     <nav>
       <ul>
-        <li><a href="./createEvent.html">Create event</a></li>
-        <li><a href="./login.html">Login</a></li>
-        <li><a href="./signup.html">Sign up</a></li>
+        <li><a href="../views/createEvent.html">Create event</a></li>
+        <li><a href="../views/login.html">Login</a></li>
+        <li><a href="../views/signup.html">Sign up</a></li>
         <li><a href="#">Explore</a></li>
-        <li><a href="./events.html">Events</a></li>
+        <li><a href="../views/events.php">Events</a></li>
       </ul>
     </nav>
   </header>
@@ -50,7 +50,7 @@
               <li>Total spots: 12</li>
             </ul>
           </div>
-          <button class="register-btn"><a href="event.html">Register now</a></button>
+          <button class="register-btn"><a href="../views/event.php">Register</a></button>
         </div>
       </div>
       <div class="event-card">
@@ -64,7 +64,7 @@
               <li>Total spots: 18</li>
             </ul>
           </div>
-          <button class="register-btn">Register now</button>
+          <button class="register-btn">Register</button>
         </div>
       </div>
       <div class="event-card">
@@ -78,7 +78,7 @@
               <li>Total spots: 8</li>
             </ul>
           </div>
-          <button class="register-btn">Register now</button>
+          <button class="register-btn">Register</button>
         </div>
       </div>
     </div>
@@ -87,7 +87,7 @@
   <h3 class="section-heading">Need some company?</h3>
   <section class="find-company">
     <div class="find-guide">
-      <p class="find-guide-txt"><a href="./guides.html">Travel with a guide</p></a>
+      <p class="find-guide-txt"><a href="../views/guides.php">Travel with a guide</p></a>
       <img src="./assets/images/guide.jpg" alt="">
     </div>
     <div class="find-group">
@@ -121,8 +121,8 @@
     </div>
   </section>
 
-  <footer>
-    <span><a href="/">Vivid Ventures</a></span>
-  </footer>
+  <?php include('../templates/footer.php'); ?>
+
+  <script src="./script.js"></script>
 </body>
 </html>

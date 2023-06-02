@@ -1,0 +1,1 @@
+let registerBtn = document.querySelector('.register-btn');

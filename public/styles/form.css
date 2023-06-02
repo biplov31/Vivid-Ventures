@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +11,7 @@
   inset: 0;
   z-index: -1;
   min-height: 100dvh;
-  background-image: url('/public/assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg');
+  background-image: url('../assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg');
   background-position: center;
   background-size: cover;
   filter: grayscale(.8);
@@ -25,7 +27,7 @@ h1 {
   margin: 1.6rem auto 1rem auto;
 }
 form {
-  margin: 0 auto;
+  margin: 0 auto 3rem auto;
   padding: 1.5rem;
   display: flex;
   flex-direction: row;
