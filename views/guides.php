@@ -65,7 +65,7 @@
           <img src="../public/assets/images/call-start.svg" alt="">
           <span>9856123972</span>
         </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, cupiditate veniam accusantium dignissimos ipsa nam quaerat reprehenderit natus placeat qui.</p> 
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p> 
       </div>
     </div>
     <div class="guide-profile">
@@ -86,5 +86,6 @@
 
   <?php include('../templates/footer.php') ?>
 
+  <script src="../public/script.js"></script>
 </body>
 </html>

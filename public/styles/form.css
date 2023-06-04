@@ -97,11 +97,12 @@ form textarea {
   font-size: 1rem;
 }
 form.login {
-  width: 45%;
+  max-width: 45%;
   flex-direction: column;
   padding: 4rem;
 }
 button {
+  display: block;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -145,4 +146,19 @@ button:hover span {
 }
 .event-image {
   max-width: 100%;
+}
+
+@media screen and (max-width: 590px) {
+  form, form.login {
+    max-width: 70%;
+  }
+  form > div, form.login > div {
+    width: 100%;
+  }
+  form input:not([type='email'], [type='date']) {
+    width: 80%;
+  }
+  form.login input {
+    width: 100%;
+  }
 }

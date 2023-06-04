@@ -13,7 +13,12 @@
 <body>
   <header class="index-page-header">
     <a href="../public/index.php"><div class="logo"></div></a>
-    <nav>
+    <div class="mobile-nav-toggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <nav class="navbar">
       <ul>
         <li><a href="../views/createEvent.html">Create event</a></li>
         <li><a href="../views/login.html">Login</a></li>
@@ -41,9 +46,9 @@
     <div class="event-cards">
       <div class="event-card">
         <img src="./assets/images/neha-maheen-mahfin-cK6fjg5YJEA-unsplash.jpg" alt="">
+        <strong>Annapurna Base Camp</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Annapurna Base Camp</strong>
             <ul>
               <li>9-day trip</li>
               <li>Per head Rs 15000</li>
@@ -55,9 +60,9 @@
       </div>
       <div class="event-card">
         <img src="./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
+        <strong>Bandipur</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Bandipur</strong>
             <ul>
               <li>5-day trip</li>
               <li>Per head Rs 5000</li>
@@ -69,9 +74,9 @@
       </div>
       <div class="event-card">
         <img src="./assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg" alt="">
+        <strong>Shey Phoksundo</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Shey Phoksundo</strong>
             <ul>
               <li>12-day trip</li>
               <li>Per head Rs 20000</li>

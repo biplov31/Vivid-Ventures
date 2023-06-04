@@ -16,86 +16,86 @@
     <div class="event-cards">
       <div class="event-card">
         <img src="../public/assets/images/neha-maheen-mahfin-cK6fjg5YJEA-unsplash.jpg" alt="">
+        <strong>Annapurna Base Camp</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Annapurna Base Camp</strong>
             <ul>
               <li>9-day trip</li>
               <li>Per head Rs 15000</li>
               <li>Total spots: 12</li>
             </ul>
           </div>
-          <button class="register-btn">Register now</button>
+          <button class="register-btn">Register</button>
         </div>
       </div>
       <div class="event-card">
         <img src="../public/assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
+        <strong>Bandipur</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Bandipur</strong>
             <ul>
               <li>5-day trip</li>
               <li>Per head Rs 5000</li>
               <li>Total spots: 18</li>
             </ul>
           </div>
-          <button class="register-btn">Register now</button>
+          <button class="register-btn">Register</button>
         </div>
       </div>
       <div class="event-card">
         <img src="../public/assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg" alt="">
+        <strong>Shey Phoksundo</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Shey Phoksundo</strong>
             <ul>
               <li>12-day trip</li>
               <li>Per head Rs 20000</li>
               <li>Total spots: 8</li>
             </ul>
           </div>
-          <button class="register-btn">Register now</button>
+          <button class="register-btn">Register</button>
         </div>
       </div>
       <div class="event-card">
         <img src="../public/assets/images/neha-maheen-mahfin-cK6fjg5YJEA-unsplash.jpg" alt="">
+        <strong>Annapurna Base Camp</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Annapurna Base Camp</strong>
             <ul>
               <li>9-day trip</li>
               <li>Per head Rs 15000</li>
               <li>Total spots: 12</li>
             </ul>
           </div>
-          <button class="register-btn">Register now</button>
+          <button class="register-btn">Register</button>
         </div>
       </div>
       <div class="event-card">
         <img src="../public/assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
+        <strong>Bandipur</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Bandipur</strong>
             <ul>
               <li>5-day trip</li>
               <li>Per head Rs 5000</li>
               <li>Total spots: 18</li>
             </ul>
           </div>
-          <button class="register-btn">Register now</button>
+          <button class="register-btn">Register</button>
         </div>
       </div>
       <div class="event-card">
         <img src="../public/assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg" alt="">
+        <strong>Shey Phoksundo</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Shey Phoksundo</strong>
             <ul>
               <li>12-day trip</li>
               <li>Per head Rs 20000</li>
               <li>Total spots: 8</li>
             </ul>
           </div>
-          <button class="register-btn">Register now</button>
+          <button class="register-btn">Register</button>
         </div>
       </div>
     </div>
@@ -106,6 +106,6 @@
 
   <?php include('../templates/footer.php') ?>
 
-  <script src="./script.js"></script>
+  <script src="../public/script.js"></script>
 </body>
 </html>

@@ -1,6 +1,11 @@
 <header>
   <a href="../public/index.php"><div class="logo"></div></a>
-  <nav>
+    <div class="mobile-nav-toggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  <nav class="navbar">
     <ul>
       <li><a href="../views/createEvent.html">Create event</a></li>
       <li><a href="../views/login.html">Login</a></li>
