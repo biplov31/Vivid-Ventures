@@ -10,7 +10,7 @@
 <body>
   <div class="background"></div>
   <h1>Create event</h1>
-  <form action="">
+  <form action="../controller/createPackage.php" method="POST" class="event-form">
     <div class="event-title">
       <label for="title">Title:</label>
       <input type="text" name="title" id="title">

@@ -27,5 +27,7 @@
     </button>  
         
   </form>
+
+  <script src="../public/scripts/formValidation.js"></script>
 </body>
 </html>

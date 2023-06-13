@@ -7,9 +7,9 @@
     </div>
   <nav class="navbar">
     <ul>
-      <li><a href="../views/createEvent.html">Create event</a></li>
-      <li><a href="../views/login.html">Login</a></li>
-      <li><a href="../views/signup.html">Sign up</a></li>
+      <li><a href="../views/createEvent.php">Create event</a></li>
+      <li><a href="../views/login.php">Login</a></li>
+      <li><a href="../views/signup.php">Sign up</a></li>
       <li><a href="#">Explore</a></li>
       <li><a href="../views/events.php">Events</a></li>
     </ul>

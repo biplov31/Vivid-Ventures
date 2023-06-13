@@ -86,6 +86,6 @@
 
   <?php include('../templates/footer.php') ?>
 
-  <script src="../public/script.js"></script>
+  <script src="../public/scripts/main.js"></script>
 </body>
 </html>

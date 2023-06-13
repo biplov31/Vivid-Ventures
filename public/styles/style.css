@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
+  --header-blue:#8294C4;
   --primary-white: #fafafa;
   --secondary-blue: #5bbce9;
 }
@@ -24,11 +25,13 @@ a {
   cursor: pointer;
 }
 header {
+  width: 100%;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(43, 43, 43);
+  background-color: var(--header-blue);
+  /* background-color: rgba(43, 43, 43); */
   /* opacity: 0.4; */
   color: rgba(240, 240, 240, .8);
   /* border-bottom: 2px solid #DDD5D5; */
@@ -38,6 +41,8 @@ header {
   background-color: rgba(43, 43, 43, 0.5);
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   width: 100%;  
   z-index: 10;
 }
@@ -129,6 +134,7 @@ nav ul {
     backdrop-filter: blur(1rem);
     transition: transform 350ms ease;
     transform: translateX(100%);
+    display: none;
   }
   nav ul {
     flex-direction: column;
@@ -149,7 +155,11 @@ nav ul {
     /* width: 2rem; */
     /* background-color: var(var(--secondary-blue); */
   }
-
+}
+@media (min-width: 590px) {
+  nav {
+    transform: translateX(0%);
+  }
 }
 section.hero {
   position: relative;
@@ -168,7 +178,9 @@ section.hero {
   top: 0;
   bottom: 0;
   width: 100%;
-  background-color: var(--secondary-blue);
+  /* background-color: var(--secondary-blue); */
+  /* background-color: hsl(0, 0%, 17%, 0.4); */
+  /* background-color: hsl(207, 44%, 49%, 0.8); */
   mix-blend-mode: overlay;
   z-index: -20;
 }
@@ -232,7 +244,7 @@ section.hero {
   width: 32%;
   min-width: 30%;
   height: 100%;
-  border: 1.5px solid rgba(43, 43, 43, .3);
+  /* border: 1.5px solid rgba(43, 43, 43, .3); */
   border-radius: 5px;
   border: none;
   overflow: hidden;
@@ -249,7 +261,7 @@ section.hero {
   padding: .2rem;
   width: 100%;
   text-align: center;
-  background-color: rgba(43, 43, 43, 0.8);
+  background-color: rgba(43, 43, 43, 0.2);
   color: var(--primary-white);
 }
 .event-card-info {
@@ -337,6 +349,7 @@ section.itinerary {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(8, 7rem);
+  /* background-color: #2B2B2B; */
   gap: 5px;
   /* transform: rotate(45deg) scale(1.5); */
   max-height: 32rem; 

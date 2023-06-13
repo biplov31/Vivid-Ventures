@@ -20,9 +20,9 @@
     </div>
     <nav class="navbar">
       <ul>
-        <li><a href="../views/createEvent.html">Create event</a></li>
-        <li><a href="../views/login.html">Login</a></li>
-        <li><a href="../views/signup.html">Sign up</a></li>
+        <li><a href="../views/createEvent.php">Create event</a></li>
+        <li><a href="../views/login.php">Login</a></li>
+        <li><a href="../views/signup.php">Sign up</a></li>
         <li><a href="#">Explore</a></li>
         <li><a href="../views/events.php">Events</a></li>
       </ul>
@@ -31,7 +31,7 @@
 
   <section class="hero">
     <video muted loop autoplay >
-      <source src="./assets/images/hills.mp4" type="video/mp4">
+      <source src="./assets/images/mountains.mp4" type="video/mp4">
     </video>
     <div class="video-container"></div>
     
@@ -115,7 +115,9 @@
         <img src="./assets/images/gaddafi-rusli-2ueUnL4CkV8-unsplash.jpg" alt="">
       </div>
       <div class="gallery-img img5"></div>
-      <div class="gallery-img img6"></div>
+      <div class="gallery-img img6">
+        <img src="./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
+      </div>
       <div class="gallery-img img7">
         <img src="./assets/images/group.jpg" alt="">
       </div>
@@ -128,6 +130,6 @@
 
   <?php include('../templates/footer.php'); ?>
 
-  <script src="./script.js"></script>
+  <script src="./scripts/main.js"></script>
 </body>
 </html>

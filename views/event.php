@@ -48,6 +48,6 @@
   <?php include('../templates/footer.php') ?>
 
 
-  <script src="../public/script.js"></script>
+  <script src="../publicscripts/main.js"></script>
 </body>
 </html>
