@@ -12,21 +12,26 @@
 </head>
 <body>
   <header class="index-page-header">
-    <div class="logo"></div>
-    <nav>
+    <a href="../public/index.php"><div class="logo"></div></a>
+    <div class="mobile-nav-toggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <nav class="navbar">
       <ul>
-        <li><a href="./createEvent.html">Create event</a></li>
-        <li><a href="./login.html">Login</a></li>
-        <li><a href="./signup.html">Sign up</a></li>
+        <li><a href="../views/createEvent.php">Create event</a></li>
+        <li><a href="../views/login.php">Login</a></li>
+        <li><a href="../views/signup.php">Sign up</a></li>
         <li><a href="#">Explore</a></li>
-        <li><a href="./events.html">Events</a></li>
+        <li><a href="../views/events.php">Events</a></li>
       </ul>
     </nav>
   </header>
 
   <section class="hero">
     <video muted loop autoplay >
-      <source src="./assets/images/hills.mp4" type="video/mp4">
+      <source src="./assets/images/mountains.mp4" type="video/mp4">
     </video>
     <div class="video-container"></div>
     
@@ -41,44 +46,44 @@
     <div class="event-cards">
       <div class="event-card">
         <img src="./assets/images/neha-maheen-mahfin-cK6fjg5YJEA-unsplash.jpg" alt="">
+        <strong>Annapurna Base Camp</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Annapurna Base Camp</strong>
             <ul>
               <li>9-day trip</li>
               <li>Per head Rs 15000</li>
               <li>Total spots: 12</li>
             </ul>
           </div>
-          <button class="register-btn"><a href="event.html">Register now</a></button>
+          <button class="register-btn"><a href="../views/event.php">Register</a></button>
         </div>
       </div>
       <div class="event-card">
         <img src="./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
+        <strong>Bandipur</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Bandipur</strong>
             <ul>
               <li>5-day trip</li>
               <li>Per head Rs 5000</li>
               <li>Total spots: 18</li>
             </ul>
           </div>
-          <button class="register-btn">Register now</button>
+          <button class="register-btn">Register</button>
         </div>
       </div>
       <div class="event-card">
         <img src="./assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg" alt="">
+        <strong>Shey Phoksundo</strong>
         <div class="event-card-info">
           <div class="info-text">
-            <strong>Shey Phoksundo</strong>
             <ul>
               <li>12-day trip</li>
               <li>Per head Rs 20000</li>
               <li>Total spots: 8</li>
             </ul>
           </div>
-          <button class="register-btn">Register now</button>
+          <button class="register-btn">Register</button>
         </div>
       </div>
     </div>
@@ -87,7 +92,7 @@
   <h3 class="section-heading">Need some company?</h3>
   <section class="find-company">
     <div class="find-guide">
-      <p class="find-guide-txt"><a href="./guides.html">Travel with a guide</p></a>
+      <p class="find-guide-txt"><a href="../views/guides.php">Travel with a guide</p></a>
       <img src="./assets/images/guide.jpg" alt="">
     </div>
     <div class="find-group">
@@ -110,7 +115,9 @@
         <img src="./assets/images/gaddafi-rusli-2ueUnL4CkV8-unsplash.jpg" alt="">
       </div>
       <div class="gallery-img img5"></div>
-      <div class="gallery-img img6"></div>
+      <div class="gallery-img img6">
+        <img src="./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
+      </div>
       <div class="gallery-img img7">
         <img src="./assets/images/group.jpg" alt="">
       </div>
@@ -121,8 +128,8 @@
     </div>
   </section>
 
-  <footer>
-    <span><a href="/">Vivid Ventures</a></span>
-  </footer>
+  <?php include('../templates/footer.php'); ?>
+
+  <script src="./scripts/main.js"></script>
 </body>
 </html>
