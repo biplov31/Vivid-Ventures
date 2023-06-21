@@ -1,3 +1,11 @@
+<?php
+  session_start();
+
+  if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
+    // echo "User is logged in.";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +28,30 @@
     </div>
     <nav class="navbar">
       <ul>
-        <li><a href="../views/createEvent.php">Create event</a></li>
-        <li><a href="../views/login.php">Login</a></li>
-        <li><a href="../views/signup.php">Sign up</a></li>
+        <?php
+          if (isset($_SESSION['email']) && $_SESSION['email'] == "admin@admin.com") {
+            echo '<li><a href="../views/createPackage.php">Create event</a></li>';
+          }
+        ?>
         <li><a href="#">Explore</a></li>
         <li><a href="../views/events.php">Events</a></li>
+        <?php
+          if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
+            echo '<li><a href="../controllers/logout.php">Logout</a></li>';
+          } else {
+            echo '
+            <li><a href="../views/login.php">Login</a></li>
+            <li class="signup-options">
+              <a href="../views/signup.php">Sign up<img src="./assets/images/arrow-drop-down-line.svg" alt=""></a>          
+              <ul>
+                <li>As a user</li>
+                <li>As a guide</li>
+              </ul>
+            </li>
+            ';
+          }
+        ?>
+        
       </ul>
     </nav>
   </header>

@@ -1,4 +1,5 @@
-document.querySelector('video').playbackRate = 0.7;
+let video = document.querySelector('video')
+if (video) video.playbackRate = 0.7
 
 const nav = document.querySelector('.navbar');
 const navToggle = document.querySelector('.mobile-nav-toggle');
@@ -30,4 +31,6 @@ const cancelBtn = document.querySelector('.cancel-btn');
 cancelBtn.addEventListener('click', () => {
   formOverlay.style.display = 'none';
 })
+
+
 

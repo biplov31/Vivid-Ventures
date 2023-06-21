@@ -30,7 +30,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--header-blue);
+  background-color: #2B2B2B;
   /* background-color: rgba(43, 43, 43); */
   /* opacity: 0.4; */
   color: rgba(240, 240, 240, .8);
@@ -101,6 +101,18 @@ nav ul {
   flex-direction: row;
   gap: 2rem;
   list-style: none;
+}
+li.signup-options a {
+  width: 100%;
+  /* display: flex; */
+  align-items: center;
+  /* justify-content: center; */
+}
+.signup-options ul {
+  display: none;
+}
+li.signup-options img {
+  width: 2rem;
 }
 .mobile-nav-toggle {
   display: none;
@@ -261,7 +273,7 @@ section.hero {
   padding: .2rem;
   width: 100%;
   text-align: center;
-  background-color: rgba(43, 43, 43, 0.2);
+  background-color: rgba(43, 43, 43, 0.8);
   color: var(--primary-white);
 }
 .event-card-info {
@@ -279,19 +291,31 @@ section.hero {
   list-style: none;  
   line-height: 1.3;
 }
-.register-btn {
+.event-btn {
+  width: 20%;
   padding: .4rem .8rem;
-  background-color: lightblue;
   outline: 2px solid lightblue;
   border-radius: 8px;
   border: none;
   font-weight: 600;
   transition: background-color .2s linear;
 }
-.register-btn:hover {
+.event-btn:hover {
   background-color: transparent;
+}
+.register-btn, .edit-btn {
+  background-color: lightblue;
+}
+.register-btn:hover, .edit-btn:hover {
   outline: 2px solid var(--secondary-blue);
   color: steelblue;
+}
+.delete-event-btn {
+  background-color: rgba(255, 0, 0, 0.7);
+}
+.delete-event-btn:hover {
+  outline: 2px solid red;
+  color: red;
 }
 section.find-company {
   width: 70%;

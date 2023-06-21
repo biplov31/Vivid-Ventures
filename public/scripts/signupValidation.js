@@ -6,7 +6,6 @@ const rePasswordField = document.getElementById('rePassword');
 const dateOfBirthField = document.getElementById('date-of-birth');
 const signupBtn = document.querySelector('button[name="signup"]');
 
-
 const validateInput = (input, regex) => {
   if (!input.match(regex)) {
     signupBtn.disabled = true;
@@ -69,6 +68,9 @@ const checkEmailDuplication = async (email) => {
   if (!response.ok) {
     displayError(emailField, "Email address already exists.");
     signupBtn.disabled = true;
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -79,7 +81,7 @@ emailField.addEventListener('blur', () => {
     removeExistingError(emailField);
   }
   checkEmailDuplication(emailField.value);
-})
+});
 
 passwordField.addEventListener('blur', () => {
   // /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/
@@ -99,7 +101,11 @@ rePasswordField.addEventListener('blur', () => {
   }
 })
 
-signupBtn.addEventListener('click', () => {
-
-  // let age = (new Date() - dateOfBirthField.value)/(1000*60*60*24*365);
+signupBtn.addEventListener('click', async (e) => {
+  let isEmailDuplicate = await checkEmailDuplication(emailField.value);
+  if (isEmailDuplicate) {
+    e.preventDefault();
+    return;
+  }  
+  document.querySelector('.signup-form').submit();
 }) 

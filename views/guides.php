@@ -62,7 +62,7 @@
       <div class="guide-info"> 
         <h4>Hari Styles</h4>
         <div class="contact">
-          <img src="../public/assets/images/call-start.svg" alt="">
+          <img src="../public/assets/icons/call-start.svg" alt="">
           <span>9856123972</span>
         </div>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p> 
@@ -71,12 +71,12 @@
     <div class="guide-profile">
       <div class="status inactive">Inactive</div>
       <div class="guide-image">
-        <img src="../public/assets/images/business-woman-2.svg" alt="">
+        <img src="../public/assets/icons/business-woman-2.svg" alt="">
       </div>
       <div class="guide-info"> 
         <h4>Kim Kumari Kuikel</h4>
         <div class="contact">
-          <img src="../public/assets/images/call-start.svg" alt="">
+          <img src="../public/assets/icons/call-start.svg" alt="">
           <span>980123899</span>
         </div>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, cupiditate veniam accusantium dignissimos ipsa nam quaerat reprehenderit natus placeat qui.</p> 

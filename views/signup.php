@@ -2,7 +2,6 @@
 include "../controllers/signup.php"
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +14,7 @@ include "../controllers/signup.php"
 <body>
   <div class="background"></div>
   <h1>Sign up</h1>
-  <form action="../controllers/signup.php" method="POST">
+  <form action="" method="POST" class="signup-form" name="signup-form">
     <div class="popup <?php echo $popupClasses ?>"><?php echo $popupText ?></div>
     <div class="name">
       <label for="name">Name:</label>
@@ -28,7 +27,7 @@ include "../controllers/signup.php"
     
     <div class="email">
       <label for="email">Email:</label>
-      <input type="email" name="email" id="email" required>
+      <input type="email" name="email" id="email" class="signup-email" required>
     </div>
     
     <div class="password">
@@ -65,6 +64,6 @@ include "../controllers/signup.php"
     <!-- users can add places to their wishlist and based on that, groups can be recommended -->
   </form>
     
-  <script src="../public/scripts/formValidation.js"></script>
+  <script src="../public/scripts/signupValidation.js"></script>
 </body>
 </html>
