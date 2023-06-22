@@ -4,7 +4,7 @@ const emailField = document.querySelector('input[type=email]');
 const passwordField = document.getElementById('password');
 const rePasswordField = document.getElementById('rePassword');
 const dateOfBirthField = document.getElementById('date-of-birth');
-const signupBtn = document.querySelector('button[name="signup"]');
+const signupBtn = document.querySelector('.submit-btn');
 
 const validateInput = (input, regex) => {
   if (!input.match(regex)) {
@@ -59,7 +59,7 @@ contactField.addEventListener('blur', () => {
 })
 
 const checkEmailDuplication = async (email) => {
-  const response = await fetch(`http://localhost/vivid-ventures/controllers/signup.php?email=${email}`, {
+  const response = await fetch(`http://localhost/vivid-ventures/controllers/signup.php?email=${email}&form_type=${signupBtn.name}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

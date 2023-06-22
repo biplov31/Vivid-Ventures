@@ -4,16 +4,19 @@ include "../config/database.php";
 
 session_start();
 
-function checkIfEmailExists($email, $db_conn) {
-  $query = "SELECT * FROM user WHERE email = '$email';";
+function checkIfEmailExists($table, $email, $db_conn) {
+  $query = "SELECT * FROM $table WHERE email = '$email';";
   $result = $db_conn->query($query);
   if ($result->num_rows > 0) {
     return true;
   }
 }
 if (isset($_GET['email'])) {
+  echo $_SERVER['HTTP_REFERER'];
+  $formType = $_GET['form_type'];
+  echo $formType;
   $emailToVerify = $_GET['email'];
-  $emailExists = checkIfEmailExists($emailToVerify, $conn);
+  $emailExists = checkIfEmailExists($formType == 'signup-user' ? 'users' : 'guides', $emailToVerify, $conn);
   if ($emailExists) {
     http_response_code(409);
     echo json_encode(['error'=>true, 'message'=>'Email already exists.']);
@@ -24,7 +27,7 @@ if (isset($_GET['email'])) {
 $popupText = "";
 $popupClasses = "hidden";
 
-if (isset($_POST['signup'])) {
+if (isset($_POST['signup-user']) || isset($_POST['signup-guide'])) {
   $name = $_POST['name'];
   $contact = $_POST['contact'];
   $email = $_POST['email'];
@@ -33,10 +36,18 @@ if (isset($_POST['signup'])) {
   $dateOfBirth = $_POST['date-of-birth'];
   $gender = $_POST['gender'];
 
-  $query = "INSERT INTO user (name, mobile_number, email, password, gender, date_of_birth)
-  VALUES ('$name', '$contact', '$email', '$hashedPassword', '$gender', '$dateOfBirth')";
+  $insert = null;
+  if (isset($_POST['signup-user'])) {
+    $insert = "INSERT INTO users (name, mobile_number, email, password, gender, date_of_birth)
+    VALUES ('$name', '$contact', '$email', '$hashedPassword', '$gender', '$dateOfBirth')";
+  }
+  if (isset($_POST['signup-guide'])) {
+    $bio = $_POST['bio'];
+    $insert = "INSERT INTO guides (name, contact, gender, email, password, date_of_birth, bio) 
+    VALUES ('$name', '$contact', '$gender', '$email', '$password', '$dateOfBirth', '$bio')";
+  }
 
-  if ($conn->query($query)) {
+  if ($conn->query($insert)) {
     $userId = $conn->insert_id;
     $_SESSION['user_id'] = $userId;
     $_SESSION['email'] = $email;

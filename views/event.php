@@ -9,24 +9,37 @@
   <link rel="stylesheet" href="../public/styles/event.css">
 </head>
 <body>
-  <?php include('../templates/header.php') ?>
+  <?php 
+  include "../config/database.php";
+  include "../templates/header.php";
+
+  if (isset($_GET['package_id'])) {
+    $packageId = $_GET['package_id'];
+    $read = "SELECT * FROM packages WHERE package_id='2'";
+    $result = $conn->query($read);
+
+    if ($result->num_rows > 0) {
+      $package = $result->fetch_assoc();
+    }
+  }
+  ?>
 
   <div class="event-container">
     <section class="event-info-section">
         <div class="image-container">
-          <img src="../public/assets/images/neha-maheen-mahfin-cK6fjg5YJEA-unsplash.jpg" alt="">
+          <img src="../public/assets/images/<?php echo $package['image'] ?>" alt="">
           <div class="event-info">
-            <h3>Bandipur</h3>
+            <h3><?php echo $package['title'] ?></h3>
             <ul>
-              <li>9-day trip</li>
-              <li>Per head Rs 15000</li>
-              <li>Total spots: 12</li>
+              <li><?php // echo $package['start_date']->diff($package['end_date'])->("%d") ?>-day trip</li>
+              <li>Per head Rs <?php echo $package['price'] ?></li>
+              <li>Total spots: <?php echo $package['seats'] ?></li>
             </ul>
           </div>
         </div>
         <div class="event-description">
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe porro, dolor itaque suscipit totam molestias tempora impedit. Facilis, dolorem doloremque aut quam id odio fugiat, vero dolorum at enim atque. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium, quasi enim laboriosam sint ipsam dicta, corporis sit blanditiis quas ab unde, facere possimus architecto fugiat praesentium harum incidunt magnam voluptatibus?</p>
-          <button class="register-btn confirmation-btn">Register now</button>   
+          <p><?php echo $package['description'] ?></p>
+          <button class="register-btn event-card-btn confirmation-btn">Register now</button>   
         </div>            
     </section>
     <div class="form-overlay">
@@ -45,9 +58,9 @@
     </div>
   </div>
 
-  <?php include('../templates/footer.php') ?>
+  <?php include "../templates/footer.php" ?>
 
 
-  <script src="../publicscripts/main.js"></script>
+  <script src="../public/scripts/main.js"></script>
 </body>
 </html>

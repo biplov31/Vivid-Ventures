@@ -1,6 +1,6 @@
-    <?php
-      include "../controllers/login.php";
-    ?>
+<?php
+include "../controllers/login.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">

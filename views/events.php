@@ -12,7 +12,7 @@
   include('../config/database.php');
   include('../templates/header.php');
 
-  $query = "SELECT * FROM package ORDER BY start_date";
+  $query = "SELECT * FROM packages ORDER BY start_date";
   $result = $conn->query($query);
 
   ?>
@@ -30,8 +30,10 @@
           
           echo '
           <div class="event-card">
-            <img src="../public/assets/images/'.$package["image"].'" alt="">
-            <strong>'.$package["title"].'</strong>
+            <div class="event-card-image">
+              <img src="../public/assets/images/'.$package["image"].'" alt="">
+              <strong>'.$package["title"].'</strong>
+            </div>  
             <div class="event-card-info">
               <div class="info-text">
                 <ul>
@@ -39,16 +41,18 @@
                   <li>Per head Rs '.$package['price'].'</li>
                   <li>Total spots: '.$package['seats'].'</li>
                 </ul>
-              </div>';
+              </div>
+              <div class="event-card-buttons">';
               if (isAdmin()) {
                 echo '
-                <a class="edit-btn event-btn" href="../views/createPackage.php?package_id='.$package['package_id'].'">Edit</a>
-                <button class="delete-event-btn event-btn" value="'.$package['package_id'].'">Delete</button>
+                <a class="edit-btn event-card-btn" href="../views/createPackage.php?package_id='.$package['package_id'].'">Edit</a>
+                <button class="delete-event-btn event-card-btn" value="'.$package['package_id'].'">Delete</button>                 
                 ';
               } else {
-                echo '<a class="register-btn event-btn" href="event.php?id='.$package['package_id'].'">Register</a>';
+                echo '<a class="register-btn event-card-btn" href="../views/event.php?package_id='.$package['package_id'].'">Register</a>';
               }
-            echo '
+              echo '
+              </div> 
             </div>
           </div>
           ';

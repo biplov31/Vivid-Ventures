@@ -22,10 +22,11 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
   
   if (isset($_POST['create'])) {
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
-      $insert = $conn->query("INSERT INTO package (title, image, start_date, end_date, seats, price, description)
+      $insert = $conn->query("INSERT INTO packages (title, image, start_date, end_date, seats, price, description)
       VALUES ('$title', '$fileName', '$start_date', '$end_date', '$seats', '$price', '$description')");
 
       if ($insert) {
+        header("Location: ../views/events.php");
         echo "Data uploaded successfully.";
       } else {
         echo "Data upload failed.";
@@ -38,7 +39,7 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
   if (isset($_POST['update']) && isset($_GET['package_id'])) {
     $packageId = $_GET['package_id'];
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
-      $update = $conn->query("UPDATE package SET title='$title', image='$fileName', start_date='$start_date', end_date='$end_date', seats='$seats', price='$price', description='$description' WHERE package_id='$packageId'");
+      $update = $conn->query("UPDATE packages SET title='$title', image='$fileName', start_date='$start_date', end_date='$end_date', seats='$seats', price='$price', description='$description' WHERE package_id='$packageId'");
 
       if ($update) {
         echo "Data updated successfully.";
@@ -55,7 +56,7 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE' && isset($_GET['package_id'])) {
   echo "Delete request received.";
   $packageId = $_GET['package_id'];
-  $delete = $conn->query("DELETE FROM package WHERE package_id=$packageId");
+  $delete = $conn->query("DELETE FROM packages WHERE package_id=$packageId");
 
   if ($delete) {
     header("Location: ../views/events.php");

@@ -71,7 +71,42 @@
   <section class="ongoing-events">
     <h3 class="section-heading">Ongoing Events</h3>
     <div class="event-cards">
-      <div class="event-card">
+    <?php
+    include "../config/database.php";
+    
+    $query = "SELECT * FROM packages ORDER BY start_date LIMIT 3";
+    $result = $conn->query($query);
+
+    function formatDate($date) {
+      return date("m/d", strtotime($date));
+    }
+    if ($result->num_rows > 0) {
+      while($package = $result->fetch_assoc()) {
+        
+        echo '
+        <div class="event-card">
+          <div class="event-card-image">
+            <img src="../public/assets/images/'.$package["image"].'" alt="">
+            <strong>'.$package["title"].'</strong>
+          </div>  
+          <div class="event-card-info">
+            <div class="info-text">
+              <ul>
+                <li>'.formatDate($package['start_date']).' to '.formatDate($package['end_date']).'</li>
+                <li>Per head Rs '.$package['price'].'</li>
+                <li>Total spots: '.$package['seats'].'</li>
+              </ul>
+            </div>
+            <div class="event-card-buttons">
+              <a class="register-btn event-card-btn" href="../views/event.php?package_id='.$package['package_id'].'">Register</a>
+            </div>
+          </div>
+        </div>
+        ';
+      }
+    }
+    ?>
+      <!-- <div class="event-card">
         <img src="./assets/images/neha-maheen-mahfin-cK6fjg5YJEA-unsplash.jpg" alt="">
         <strong>Annapurna Base Camp</strong>
         <div class="event-card-info">
@@ -112,7 +147,7 @@
           </div>
           <button class="register-btn">Register</button>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 

@@ -9,7 +9,7 @@ if (isset($_GET['package_id'])) {
   $packageId = $_GET['package_id'];
   global $updatePackage;
   $updatePackage = true;
-  $query = "SELECT * FROM package WHERE package_id='$packageId'";
+  $query = "SELECT * FROM packages WHERE package_id='$packageId'";
   $result = $conn->query($query);
   if ($result->num_rows > 0) {
     $existingRecord = $result->fetch_assoc();
