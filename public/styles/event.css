@@ -26,6 +26,7 @@
 .event-info {
   padding: 2rem 1.5rem 1.5rem 1rem;
   width: 30%;
+  max-height: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -172,4 +173,18 @@ form.registration-form input:focus {
 .form-buttons button:hover {
   background-color: beige;
   color: #2B2B2B;
+}
+@media screen and (max-width: 590px) {
+  .event-info-section img {
+    width: 80%;
+  }
+  .event-info {
+    width: 45%;
+  }
+  .event-description {
+    width: 90%;
+  }
+  .registration-form-container {
+    width: 80%;
+  }
 }

@@ -23,7 +23,7 @@
       <li><a href="../views/events.php">Events</a></li>
       <?php
       function isLoggedIn() {
-        if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
+        if (isset($_SESSION['email']) && isset($_SESSION['session_id'])) {
           return true;
         } else {
           return false;

@@ -151,7 +151,7 @@ button:hover .spin {
 button:hover span {
   color: #2d3142;
 }
-form .popup {
+.popup {
   position: absolute;
   z-index: 1000;
   top: .5rem;

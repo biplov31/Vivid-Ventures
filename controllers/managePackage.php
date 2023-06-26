@@ -42,13 +42,13 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
       $update = $conn->query("UPDATE packages SET title='$title', image='$fileName', start_date='$start_date', end_date='$end_date', seats='$seats', price='$price', description='$description' WHERE package_id='$packageId'");
 
       if ($update) {
-        echo "Data updated successfully.";
         header("Location: ../views/events.php");
+        echo "<div class='popup success'>Data updated successfully.</div>";
       } else {
-        echo "Data update failed.";
+        echo "<div class='popup success'>Failed to update data.</div>";
       }
     } else {
-      echo "Failed to upload image.";
+      echo "<div class='popup success'>Failed to upload file.</div>";
     }
   } 
 }
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE' && isset($_GET['package_id'])) {
     http_response_code(204);
     echo json_encode(['message'=>'Package deleted successfully.']);
   } else {
-    echo "Error deleting package: " . $conn->error();
+    echo "Error deleting package: " . $conn->error;
   }
   exit();
 }

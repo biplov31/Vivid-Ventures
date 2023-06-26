@@ -21,16 +21,6 @@ navToggle.addEventListener('click', () => {
   }
 })
 
-const registerBtn = document.querySelector('.confirmation-btn');
-const formOverlay = document.querySelector('.form-overlay')
-registerBtn.addEventListener('click' , () => {
-  formOverlay.style.display = 'grid';
-})
-
-const cancelBtn = document.querySelector('.cancel-btn');
-cancelBtn.addEventListener('click', () => {
-  formOverlay.style.display = 'none';
-})
 
 
 

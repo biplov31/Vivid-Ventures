@@ -67,6 +67,6 @@
 
   <?php include('../templates/footer.php') ?>
 
-  <script src="../public/scripts/event.js"></script>
+  <script src="../public/scripts/events.js"></script>
 </body>
 </html>

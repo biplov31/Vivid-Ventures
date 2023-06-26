@@ -12,7 +12,7 @@ function checkIfEmailExists($table, $email, $db_conn) {
   }
 }
 if (isset($_GET['email'])) {
-  echo $_SERVER['HTTP_REFERER'];
+  // echo $_SERVER['HTTP_REFERER'];
   $formType = $_GET['form_type'];
   echo $formType;
   $emailToVerify = $_GET['email'];
@@ -48,8 +48,14 @@ if (isset($_POST['signup-user']) || isset($_POST['signup-guide'])) {
   }
 
   if ($conn->query($insert)) {
-    $userId = $conn->insert_id;
-    $_SESSION['user_id'] = $userId;
+    $id = $conn->insert_id;
+    if (isset($_POST['signup-user'])) {
+      $_SESSION['user_id'] = $id;
+    } elseif (isset($_POST['signup-guide'])) {
+      $_SESSION['guide_id'] = $id;
+    } else {
+      return;
+    }
     $_SESSION['email'] = $email;
     $sessionId = session_id();
     $_SESSION['session_id'] = $sessionId;

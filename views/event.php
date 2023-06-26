@@ -12,16 +12,22 @@
   <?php 
   include "../config/database.php";
   include "../templates/header.php";
-
+  
   if (isset($_GET['package_id'])) {
     $packageId = $_GET['package_id'];
-    $read = "SELECT * FROM packages WHERE package_id='2'";
+    $read = "SELECT * FROM packages WHERE package_id='$packageId'";
     $result = $conn->query($read);
 
     if ($result->num_rows > 0) {
       $package = $result->fetch_assoc();
     }
   }
+ 
+  // function checkUser() {
+  //   if (!$_SESSION['user_id'] && $_SESSION['guide-id']) {
+  //     echo "<div>You have to sign up as a user to register for events.</div>";
+  //   }
+  // }
   ?>
 
   <div class="event-container">
@@ -39,18 +45,18 @@
         </div>
         <div class="event-description">
           <p><?php echo $package['description'] ?></p>
-          <button class="register-btn event-card-btn confirmation-btn">Register now</button>   
+          <button class="register-btn event-card-btn" value="<?php echo $_SESSION['user_id'] ?? '' ?>">Register now</button>   
         </div>            
     </section>
     <div class="form-overlay">
       <div class="registration-form-container">
         <p>Confirm registration with following details?</p>
-        <form action="" class="registration-form">    
+        <form method="POST" action="../controllers/packageRegistration.php?package_id=<?php echo $package['package_id'] ?>" class="registration-form">    
           <label>Name: <input type="text" name="name" id="name"></label>
           <label>Mobile number: <input type="text" name="contact" id="contact"></label>
           <label>Email: <input type="email" name="email" id="email"></label>
           <div class="form-buttons">
-            <button class="submit-btn" type="submit">Confirm</button>             
+            <button class="confirm-register-btn" name="register-event">Confirm</button>             
             <button class="cancel-btn" type="button">Cancel</button>
           </div>
         </form>
@@ -61,6 +67,6 @@
   <?php include "../templates/footer.php" ?>
 
 
-  <script src="../public/scripts/main.js"></script>
+  <script src="../public/scripts/event.js"></script>
 </body>
 </html>
