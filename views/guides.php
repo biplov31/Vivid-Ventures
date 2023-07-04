@@ -6,26 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vivid Ventures</title>
   <link rel="stylesheet" href="../public/styles/style.css">
+  <link rel="stylesheet" href="../public/styles/guide.css">
 </head>
 <body>
-  <?php include('../templates/header.php') ?>  
+  <?php
+  include "../config/database.php";
+  include "../templates/header.php";
 
-  <h2 class="section-heading">Our Guides</h2>
-  <div class="profile-container">
-    <div class="guide-profile">
-      <div class="status active">Active</div>
-      <div class="guide-image">
-        <img src="../public/assets/images/business-man-2.svg" alt="">
-      </div>
-      <div class="guide-info"> 
-        <h4>Shuikka Shumsher Rana</h4>
-        <div class="contact">
-          <img src="../public/assets/images/call-start.svg" alt="">
-          <span>9800000000</span>
+  $read = "SELECT * FROM guides";
+  $results = $conn->query($read);
+
+  
+  
+  ?>  
+
+<h2 class="section-heading">Our Guides</h2>
+<div class="profile-container">
+  <?php
+  if ($results->num_rows > 0) {
+    while ($guide = $results->fetch_assoc()) {
+      echo '
+      <div class="guide-profile">
+        <div class="status active">Active</div>
+        <div class="guide-image">
+          <img src="../public/assets/icons/'.($guide['gender'] == 'male' ? 'business-man-2.svg' : 'business-woman-2.svg').'" alt="">
         </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, cupiditate veniam accusantium dignissimos ipsa nam quaerat reprehenderit natus placeat qui.</p> 
+        <div class="guide-info"> 
+          <h4>'.$guide['name'].'</h4>
+          <div class="contact">
+            <img src="../public/assets/icons/call-start.svg" alt="">
+            <span>'.$guide['contact'].'</span>
+          </div>
+          <p>'.$guide['bio'].'</p> 
+        </div>
       </div>
-    </div>
+      ';
+    };
+  }
+  ?>
+  <!-- 
     <div class="guide-profile">
       <div class="status active">Active</div>
       <div class="guide-image">
@@ -46,42 +65,14 @@
         <img src="../public/assets/images/business-man-2.svg" alt="">
       </div>
       <div class="guide-info"> 
-        <h4>Jihan Mallik</h4>
-        <div class="contact">
-          <img src="../public/assets/images/call-start.svg" alt="">
-          <span>9801235743</span>
-        </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, cupiditate veniam accusantium dignissimos ipsa nam quaerat reprehenderit natus placeat qui.</p> 
-      </div>
-    </div>
-    <div class="guide-profile">
-      <div class="status active">Active</div>
-      <div class="guide-image">
-        <img src="../public/assets/images/business-man-2.svg" alt="">
-      </div>
-      <div class="guide-info"> 
         <h4>Hari Styles</h4>
         <div class="contact">
-          <img src="../public/assets/images/call-start.svg" alt="">
+          <img src="../public/assets/icons/call-start.svg" alt="">
           <span>9856123972</span>
         </div>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p> 
       </div>
-    </div>
-    <div class="guide-profile">
-      <div class="status inactive">Inactive</div>
-      <div class="guide-image">
-        <img src="../public/assets/images/business-woman-2.svg" alt="">
-      </div>
-      <div class="guide-info"> 
-        <h4>Kim Kumari Kuikel</h4>
-        <div class="contact">
-          <img src="../public/assets/images/call-start.svg" alt="">
-          <span>980123899</span>
-        </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, cupiditate veniam accusantium dignissimos ipsa nam quaerat reprehenderit natus placeat qui.</p> 
-      </div>
-    </div>
+    </div> -->
   </div>
 
   <?php include('../templates/footer.php') ?>

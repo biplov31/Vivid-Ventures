@@ -1,3 +1,11 @@
+<?php
+  session_start();
+
+  if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
+    // echo "User is logged in.";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +28,30 @@
     </div>
     <nav class="navbar">
       <ul>
-        <li><a href="../views/createEvent.php">Create event</a></li>
-        <li><a href="../views/login.php">Login</a></li>
-        <li><a href="../views/signup.php">Sign up</a></li>
+        <?php
+          if (isset($_SESSION['email']) && $_SESSION['email'] == "admin@admin.com") {
+            echo '<li><a href="../views/createPackage.php">Create event</a></li>';
+          }
+        ?>
         <li><a href="#">Explore</a></li>
         <li><a href="../views/events.php">Events</a></li>
+        <?php
+          if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
+            echo '<li><a href="../controllers/logout.php">Logout</a></li>';
+          } else {
+            echo '
+            <li><a href="../views/login.php">Login</a></li>
+            <li class="signup-options">
+              <a href="../views/signup.php">Sign up<img src="./assets/images/arrow-drop-down-line.svg" alt=""></a>          
+              <ul>
+                <li>As a user</li>
+                <li>As a guide</li>
+              </ul>
+            </li>
+            ';
+          }
+        ?>
+        
       </ul>
     </nav>
   </header>
@@ -44,7 +71,42 @@
   <section class="ongoing-events">
     <h3 class="section-heading">Ongoing Events</h3>
     <div class="event-cards">
-      <div class="event-card">
+    <?php
+    include "../config/database.php";
+    
+    $query = "SELECT * FROM packages ORDER BY start_date LIMIT 3";
+    $result = $conn->query($query);
+
+    function formatDate($date) {
+      return date("m/d", strtotime($date));
+    }
+    if ($result->num_rows > 0) {
+      while($package = $result->fetch_assoc()) {
+        
+        echo '
+        <div class="event-card">
+          <div class="event-card-image">
+            <img src="../public/assets/images/'.$package["image"].'" alt="">
+            <strong>'.$package["title"].'</strong>
+          </div>  
+          <div class="event-card-info">
+            <div class="info-text">
+              <ul>
+                <li>'.formatDate($package['start_date']).' to '.formatDate($package['end_date']).'</li>
+                <li>Price: Rs. '.$package['price'].'</li>
+                <li>Total spots: '.$package['seats'].'</li>
+              </ul>
+            </div>
+            <div class="event-card-buttons">
+              <a class="register-btn event-card-btn" href="../views/event.php?package_id='.$package['package_id'].'">View more</a>
+            </div>
+          </div>
+        </div>
+        ';
+      }
+    }
+    ?>
+      <!-- <div class="event-card">
         <img src="./assets/images/neha-maheen-mahfin-cK6fjg5YJEA-unsplash.jpg" alt="">
         <strong>Annapurna Base Camp</strong>
         <div class="event-card-info">
@@ -85,7 +147,7 @@
           </div>
           <button class="register-btn">Register</button>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -104,22 +166,24 @@
   <h3 class="section-heading">Itinerary</h3>
   <section class="itinerary">
     <div class="gallery-images">
-      <div class="gallery-img img1"></div>
+      <div class="gallery-img img1">
+        <img src="./assets/images/chisapani.jpg" alt="">
+      </div>
       <div class="gallery-img img2">
         <img src="./assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg" alt="">
       </div>
       <div class="gallery-img img3">
-        <img src="./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
+        <img src="./assets/images/Jarsingh_Pauwa.jpg" alt="">
       </div>
       <div class="gallery-img img4">
         <img src="./assets/images/gaddafi-rusli-2ueUnL4CkV8-unsplash.jpg" alt="">
       </div>
-      <div class="gallery-img img5"></div>
-      <div class="gallery-img img6">
-        <img src="./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
+      <div class="gallery-img img5">
+        <img src="./assets/images/Lataramesor.jpg" alt="">
       </div>
-      <div class="gallery-img img7">
-        <img src="./assets/images/group.jpg" alt="">
+      <!-- <div class="gallery-img img6"></div>
+      <div class="gallery-img img7"> -->
+        
       </div>
       <!-- <div class="gallery-img img8">
         <img src="./assets/images/guide.jpg" alt="">

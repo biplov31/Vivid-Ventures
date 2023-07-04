@@ -8,97 +8,86 @@
   <link rel="stylesheet" href="../public/styles/style.css">
 </head>
 <body>
-  <?php include('../templates/header.php') ?>
+  <?php 
+  include('../config/database.php');
+  include('../templates/header.php');
+
+  $query = "SELECT * FROM packages ORDER BY start_date";
+  $result = $conn->query($query);
+
+  ?>
 
   <main>
     <h3 class="section-heading">Ongoing Events</h3>
    
     <div class="event-cards">
-      <div class="event-card">
-        <img src="../public/assets/images/neha-maheen-mahfin-cK6fjg5YJEA-unsplash.jpg" alt="">
-        <strong>Annapurna Base Camp</strong>
-        <div class="event-card-info">
-          <div class="info-text">
-            <ul>
-              <li>9-day trip</li>
-              <li>Per head Rs 15000</li>
-              <li>Total spots: 12</li>
-            </ul>
+      <?php
+      function formatDate($date) {
+        return date("m/d", strtotime($date));
+      }
+      if ($result->num_rows > 0) {
+        $expiredPackages = [];
+        while($package = $result->fetch_assoc()) {
+          if ($package['end_date'] < date('Y-m-d')) {
+            array_push($expiredPackages, $package);
+            continue;
+          }
+          echo '
+          <div class="event-card">
+            <div class="event-card-image">
+              <img src="../public/assets/images/'.$package['image'].'" alt="">
+              <strong>'.$package['title'].'</strong>
+            </div>  
+            <div class="event-card-info">
+              <div class="info-text">
+                <ul>
+                  <li>'.formatDate($package['start_date']).' to '.formatDate($package['end_date']).'</li>
+                  <li>Per head Rs '.$package['price'].'</li>
+                  <li>Total spots: '.$package['seats'].'</li>
+                </ul>
+              </div>
+              <div class="event-card-buttons">';
+              if (isAdmin()) {
+                echo '
+                <a class="edit-btn event-card-btn" href="../views/createPackage.php?package_id='.$package['package_id'].'">Edit</a>
+                <button class="delete-event-btn event-card-btn" value="'.$package['package_id'].'">Delete</button>                 
+                ';
+              } else {
+                echo '<a class="register-btn event-card-btn" href="../views/event.php?package_id='.$package['package_id'].'">View more</a>';
+              }
+              echo '
+              </div> 
+            </div>
           </div>
-          <button class="register-btn">Register</button>
-        </div>
-      </div>
-      <div class="event-card">
-        <img src="../public/assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
-        <strong>Bandipur</strong>
-        <div class="event-card-info">
-          <div class="info-text">
-            <ul>
-              <li>5-day trip</li>
-              <li>Per head Rs 5000</li>
-              <li>Total spots: 18</li>
-            </ul>
+          ';
+        }
+        foreach ($expiredPackages as $package) {
+          echo '
+          <div class="event-card">
+            <span class="expired-text">Expired</span>
+            <div class="expired-event"></div>
+            <div class="event-card-image">
+              <img src="../public/assets/images/'.$package['image'].'" alt="">
+              <strong>'.$package['title'].'</strong>
+            </div>  
+            <div class="event-card-info">
+              <div class="info-text">
+                <ul>
+                  <li>'.formatDate($package['start_date']).' to '.formatDate($package['end_date']).'</li>
+                  <li>Price: Rs. '.$package['price'].'</li>
+                  <li>Total spots: '.$package['seats'].'</li>
+                </ul>
+              </div>
+              <div class="event-card-buttons">
+                <a class="register-btn event-card-btn">View more</a>
+              </div> 
+            </div>
           </div>
-          <button class="register-btn">Register</button>
-        </div>
-      </div>
-      <div class="event-card">
-        <img src="../public/assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg" alt="">
-        <strong>Shey Phoksundo</strong>
-        <div class="event-card-info">
-          <div class="info-text">
-            <ul>
-              <li>12-day trip</li>
-              <li>Per head Rs 20000</li>
-              <li>Total spots: 8</li>
-            </ul>
-          </div>
-          <button class="register-btn">Register</button>
-        </div>
-      </div>
-      <div class="event-card">
-        <img src="../public/assets/images/neha-maheen-mahfin-cK6fjg5YJEA-unsplash.jpg" alt="">
-        <strong>Annapurna Base Camp</strong>
-        <div class="event-card-info">
-          <div class="info-text">
-            <ul>
-              <li>9-day trip</li>
-              <li>Per head Rs 15000</li>
-              <li>Total spots: 12</li>
-            </ul>
-          </div>
-          <button class="register-btn">Register</button>
-        </div>
-      </div>
-      <div class="event-card">
-        <img src="../public/assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
-        <strong>Bandipur</strong>
-        <div class="event-card-info">
-          <div class="info-text">
-            <ul>
-              <li>5-day trip</li>
-              <li>Per head Rs 5000</li>
-              <li>Total spots: 18</li>
-            </ul>
-          </div>
-          <button class="register-btn">Register</button>
-        </div>
-      </div>
-      <div class="event-card">
-        <img src="../public/assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg" alt="">
-        <strong>Shey Phoksundo</strong>
-        <div class="event-card-info">
-          <div class="info-text">
-            <ul>
-              <li>12-day trip</li>
-              <li>Per head Rs 20000</li>
-              <li>Total spots: 8</li>
-            </ul>
-          </div>
-          <button class="register-btn">Register</button>
-        </div>
-      </div>
-    </div>
+          ';
+        }
+      }
+      ?>
+    </div> 
   </main>
   <div class="plane animate-plane">
     <img src="./assets/images/paper-plane-regular.svg" alt="">
@@ -106,6 +95,7 @@
 
   <?php include('../templates/footer.php') ?>
 
+  <script src="../public/scripts/events.js"></script>
   <script src="../public/scripts/main.js"></script>
 </body>
 </html>
