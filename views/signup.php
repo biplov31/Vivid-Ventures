@@ -15,7 +15,6 @@ include "../controllers/signup.php"
   <div class="background"></div>
   <h1>Sign up</h1>
   <form action="" method="POST" class="signup-form" name="signup-form">
-    <div class="popup <?php echo $popupClasses ?>"><?php echo $popupText ?></div>
     <div class="name">
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required>

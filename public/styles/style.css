@@ -238,17 +238,18 @@ section.hero {
 }
 .event-cards {
   width: 100%;
-  padding: .6rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   /* align-items: flex-start; */
   flex-wrap: wrap;
   column-gap: 1rem;
-  row-gap: 2rem;
+  row-gap: 1.5rem;
   margin: 0 auto;
 }
 .event-card {
+  /* margin-right: auto; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -262,13 +263,36 @@ section.hero {
   height: fit-content;
   /* box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.25); */
   box-shadow: -2px -4px 4px rgba(50, 50, 50, 0.75) inset;
+  position: relative;
+}
+.expired-event {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background-color: #2B2B2B;
+  filter: opacity(0.4) contrast(0.6);
+}
+
+.expired-text {
+  /* filter: contrast(2); */
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  background-color: #fafafa;
+  color: red;
+  font-weight: 700;
+  text-transform: capitalize;
+  border-radius: 4px;
+  padding: 2px;
 }
 .event-card-image {
   width: 100%;
-  height: 50%;
   position: relative;
 }
 .event-card-image img {
+  width: 100%;
+  aspect-ratio: 1.5;
   display: block;
   object-fit: cover;
 }
@@ -430,17 +454,13 @@ section.itinerary {
   grid-row: 3 / 5;
 }
 .gallery-images .img5 {
-  grid-column: 1 / 3;
-  grid-row: 1 / 3;
+  /* background-image: url(./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg); */
+  grid-column: 4 / 6;
+  grid-row: 3 / 5;
 }
 .gallery-images .img6 {
   grid-column: 1 / 3;
   grid-row: 1 / 3;
-}
-.gallery-images .img7 {
-  /* background-image: url(./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg); */
-  grid-column: 4 / 6;
-  grid-row: 3 / 5;
 }
 .gallery-images .img8 {
   /* background-image: url(./assets/images/group.jpg); */
@@ -474,7 +494,14 @@ footer {
   background-color: #2B2B2B;
   color: var(--primary-white);
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 2rem .5rem 2rem;
+}
+footer .site-name {
+  font-weight: 600;
+}
+footer p {
+  font-size: .8rem;
+  margin-top: 1rem;
 }
 
 /* Events */

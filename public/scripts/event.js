@@ -1,3 +1,8 @@
+const eventInfo = document.querySelector('.event-info');
+window.onload = () => {
+  eventInfo.style.top = "95%";
+}
+
 const nameField = document.getElementById('name');
 const mobileNumberField = document.getElementById('contact');
 const emailField = document.getElementById('email');

@@ -44,10 +44,11 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 95%;
+  top: 65%;
   /* bottom: -15rem; */
   opacity: 1;
   z-index: -5;
+  transition: top .4s ease-in;
 } 
 .event-info h3 {
   margin-bottom: .4rem;
@@ -72,7 +73,7 @@
 }
 .event-description {
   width: 80%;
-  margin: 8rem auto 2rem auto;
+  margin: 8.5rem auto 2rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,6 +95,10 @@
   font-size: 1rem;
   font-weight: 600;
   /* margin: 1rem auto; */
+}
+.disabled-btn {
+  pointer-events: none;
+  filter: grayscale(0.5);
 }
 /* .event-page-footer {
   position: fixed;

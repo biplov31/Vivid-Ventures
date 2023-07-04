@@ -5,7 +5,7 @@ $title = $start_date = $end_date = $seats = $price = $description = $fileName = 
 
 
 if (isset($_POST['create']) || isset($_POST['update'])) {
-  $title = $_POST['title'];
+  $title = mysqli_real_escape_string($conn, $_POST['title']);
   $start_date = $_POST['start-date'];
   $end_date = $_POST['end-date'];
   if ($start_date > $end_date) {
@@ -14,7 +14,7 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
   }
   $seats = $_POST['total-seats'];
   $price = $_POST['price'];
-  $description = $_POST['description'];
+  $description = mysqli_real_escape_string($conn, $_POST['description']);
 
   $targetDir = "../public/assets/images/";
   $fileName = basename($_FILES['image']['name']);
@@ -54,7 +54,6 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE' && isset($_GET['package_id'])) {
-  echo "Delete request received.";
   $packageId = $_GET['package_id'];
   $delete = $conn->query("DELETE FROM packages WHERE package_id=$packageId");
 

@@ -12,9 +12,7 @@ function checkIfEmailExists($table, $email, $db_conn) {
   }
 }
 if (isset($_GET['email'])) {
-  // echo $_SERVER['HTTP_REFERER'];
   $formType = $_GET['form_type'];
-  echo $formType;
   $emailToVerify = $_GET['email'];
   $emailExists = checkIfEmailExists($formType == 'signup-user' ? 'users' : 'guides', $emailToVerify, $conn);
   if ($emailExists) {
@@ -23,9 +21,6 @@ if (isset($_GET['email'])) {
     exit();
   }
 }
-
-$popupText = "";
-$popupClasses = "hidden";
 
 if (isset($_POST['signup-user']) || isset($_POST['signup-guide'])) {
   $name = $_POST['name'];
@@ -59,12 +54,11 @@ if (isset($_POST['signup-user']) || isset($_POST['signup-guide'])) {
     $_SESSION['email'] = $email;
     $sessionId = session_id();
     $_SESSION['session_id'] = $sessionId;
-    $popupText = "Sign up successful.";
-    $popupClasses = "success";
-    header("Location: ../public/index.php");
+    echo "<div class='popup success'>Signed up successfully.</div>";
+    // header("Location: ../public/index.php");
+    header("refresh:3; url=../public/index.php");
   } else {
-    $popupText = "Error signing up.";
-    $popupClasses = "failure";
+    echo "<div class='popup failure'>Error signing up.</div>";
     // header("Refresh: 0");
   }
 

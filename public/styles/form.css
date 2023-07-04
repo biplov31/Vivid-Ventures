@@ -40,7 +40,7 @@ form {
   color: #bfc0c0;
   opacity: 0.92;
   border-radius: 5px;
-  position: relative;
+  /* position: relative; */
 }
 form > div {
   display: flex;
@@ -152,12 +152,12 @@ button:hover span {
   color: #2d3142;
 }
 .popup {
-  position: absolute;
+  position: fixed;
   z-index: 1000;
-  top: .5rem;
+  top: .5%;
   left: 50%;
   transform: translateX(-50%);
-  padding: 1rem;
+  padding: .8rem;
   border-radius: 5px;
   text-align: center;
   opacity: 1;
@@ -170,7 +170,7 @@ button:hover span {
   color: black;
 }
 .popup.failure {
-  background-color: orangered;
+  background-color: rgb(219, 68, 68);
   color: black;
 }
 .event-form .event-title {

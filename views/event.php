@@ -17,10 +17,14 @@
     $packageId = $_GET['package_id'];
     $read = "SELECT * FROM packages WHERE package_id='$packageId'";
     $result = $conn->query($read);
-
     if ($result->num_rows > 0) {
       $package = $result->fetch_assoc();
     }
+
+    $totalSeats = $conn->query("SELECT seats FROM packages WHERE package_id='$packageId'")->fetch_assoc();
+    $bookedSeatsResult = $conn->query("SELECT package_id, count(*) AS BookedSeatsCount FROM package_registrations WHERE package_id='$packageId' GROUP BY package_id");
+    $bookedSeats = $bookedSeatsResult->fetch_assoc();
+    $availableSeats = $totalSeats['seats'] - ($bookedSeats['BookedSeatsCount'] ?? 0);
   }
  
   // function checkUser() {
@@ -37,15 +41,16 @@
           <div class="event-info">
             <h3><?php echo $package['title'] ?></h3>
             <ul>
-              <li><?php // echo $package['start_date']->diff($package['end_date'])->("%d") ?>-day trip</li>
+              <li><?php echo (new DateTime($package['start_date']))->diff(new DateTime($package['end_date']))->days ?>-day trip</li>
               <li>Per head Rs <?php echo $package['price'] ?></li>
               <li>Total spots: <?php echo $package['seats'] ?></li>
+              <li>Available spots: <?php echo $availableSeats ?></li>
             </ul>
           </div>
         </div>
         <div class="event-description">
           <p><?php echo $package['description'] ?></p>
-          <button class="register-btn event-card-btn" value="<?php echo $_SESSION['user_id'] ?? '' ?>">Register now</button>   
+          <button class="register-btn event-card-btn <?php echo $availableSeats >= 1 ? '' : 'disabled-btn' ?>" value="<?php echo $_SESSION['user_id'] ?? '' ?>">Register now</button>   
         </div>            
     </section>
     <div class="form-overlay">

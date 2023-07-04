@@ -93,12 +93,12 @@
             <div class="info-text">
               <ul>
                 <li>'.formatDate($package['start_date']).' to '.formatDate($package['end_date']).'</li>
-                <li>Per head Rs '.$package['price'].'</li>
+                <li>Price: Rs. '.$package['price'].'</li>
                 <li>Total spots: '.$package['seats'].'</li>
               </ul>
             </div>
             <div class="event-card-buttons">
-              <a class="register-btn event-card-btn" href="../views/event.php?package_id='.$package['package_id'].'">Register</a>
+              <a class="register-btn event-card-btn" href="../views/event.php?package_id='.$package['package_id'].'">View more</a>
             </div>
           </div>
         </div>
@@ -166,22 +166,24 @@
   <h3 class="section-heading">Itinerary</h3>
   <section class="itinerary">
     <div class="gallery-images">
-      <div class="gallery-img img1"></div>
+      <div class="gallery-img img1">
+        <img src="./assets/images/chisapani.jpg" alt="">
+      </div>
       <div class="gallery-img img2">
         <img src="./assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg" alt="">
       </div>
       <div class="gallery-img img3">
-        <img src="./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
+        <img src="./assets/images/Jarsingh_Pauwa.jpg" alt="">
       </div>
       <div class="gallery-img img4">
         <img src="./assets/images/gaddafi-rusli-2ueUnL4CkV8-unsplash.jpg" alt="">
       </div>
-      <div class="gallery-img img5"></div>
-      <div class="gallery-img img6">
-        <img src="./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
+      <div class="gallery-img img5">
+        <img src="./assets/images/Lataramesor.jpg" alt="">
       </div>
-      <div class="gallery-img img7">
-        <img src="./assets/images/group.jpg" alt="">
+      <!-- <div class="gallery-img img6"></div>
+      <div class="gallery-img img7"> -->
+        
       </div>
       <!-- <div class="gallery-img img8">
         <img src="./assets/images/guide.jpg" alt="">

@@ -1,5 +1,9 @@
 <?php
 include "../controllers/login.php";
+
+if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
+  header("Location: ../public/index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +19,7 @@ include "../controllers/login.php";
   <h1>Log in</h1>
   <div class="background"></div>
   <form action="" method="POST" class="login">
-    <div class="popup <?php echo $popupClasses ?>"><?php echo $popupText ?></div>
+
     <div class="email">
       <label for="email">Email:</label>
       <input type="email" name="email" id="email" class="login-email" required>
@@ -35,6 +39,6 @@ include "../controllers/login.php";
         
   </form>
 
-  <script src="../public/scripts/formValidation.js"></script>
+  <script src="../public/scripts/loginValidation.js" defer></script>
 </body>
 </html>
