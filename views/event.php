@@ -26,6 +26,10 @@
     $bookedSeats = $bookedSeatsResult->fetch_assoc();
     $availableSeats = $totalSeats['seats'] - ($bookedSeats['BookedSeatsCount'] ?? 0);
   }
+
+  function formatDate($date) {
+    return date("m/d", strtotime($date));
+  }
  
   // function checkUser() {
   //   if (!$_SESSION['user_id'] && $_SESSION['guide-id']) {
@@ -41,10 +45,10 @@
           <div class="event-info">
             <h3><?php echo $package['title'] ?></h3>
             <ul>
-              <li><?php echo (new DateTime($package['start_date']))->diff(new DateTime($package['end_date']))->days ?>-day trip</li>
-              <li>Per head Rs <?php echo $package['price'] ?></li>
-              <li>Total spots: <?php echo $package['seats'] ?></li>
-              <li>Available spots: <?php echo $availableSeats ?></li>
+              <li><?php echo formatDate($package['start_date']).' to '.formatDate($package['end_date']) . ' (' . (new DateTime($package['start_date']))->diff(new DateTime($package['end_date']))->days . '-day trip)' ?></li>
+              <li><strong>Price:</strong> Rs <?php echo $package['price'] ?></li>
+              <li><strong>Total seats:</strong> <?php echo $package['seats'] ?></li>
+              <li><strong>Available seats:</strong> <?php echo $availableSeats ?></li>
             </ul>
           </div>
         </div>

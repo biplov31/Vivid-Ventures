@@ -12,15 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['user_id'])) {
   // echo $details;
   $userId = $_GET['user_id'];
   try {
-    $result = $conn->query("SELECT * FROM users WHERE user_id='$userId'");
+    $stmt = $conn->prepare("SELECT * FROM users WHERE user_id=?");
+    $stmt->bind_param('i', $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+      $userDetails = $result->fetch_assoc();
+      echo json_encode(['name'=>$userDetails['name'], 'mobile_number'=>$userDetails['mobile_number'], 'email'=>$userDetails['email']]);
+    } else {
+      echo "Error: " .  $conn->error;
+    }
   } catch(Exception $error) {
     echo $error->getMessage();
-  }
-  if ($result->num_rows > 0) {
-    $userDetails = $result->fetch_assoc();
-    echo json_encode(['name'=>$userDetails['name'], 'mobile_number'=>$userDetails['mobile_number'], 'email'=>$userDetails['email']]);
-  } else {
-    echo "Error: " .  $conn->error;
   }
 }
 
@@ -33,8 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['package_id'])) {
   // $availableSeats = $totalSeats['seats'] - ($bookedSeats['BookedSeatsCount'] ?? 0);
   $existingRegistration = $conn->query("SELECT * FROM package_registrations WHERE package_id='$packageId' AND user_id='$userId'");
   if ($existingRegistration->num_rows < 1) {
-    $booking = $conn->query("INSERT INTO package_registrations (package_id, user_id) VALUES ('$packageId', '$userId')");
-    if ($booking) {
+    // $booking = $conn->query("INSERT INTO package_registrations (package_id, user_id) VALUES ('$packageId', '$userId')");
+    $stmt = $conn->prepare("INSERT INTO package_registrations (package_id, user_id) VALUES (?, ?)");
+    $stmt->bind_param('ii', $packageId, $userId);
+    if ($stmt->execute()) {
       header("refresh:3; url=../views/event.php?package_id=$packageId");
       echo "<div class='popup success'>Registration successful.</div>"; // since we have not imported the css in this file, styles won't be applied 
     }    

@@ -22,10 +22,10 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
   
   if (isset($_POST['create'])) {
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
-      $insert = $conn->query("INSERT INTO packages (title, image, start_date, end_date, seats, price, description)
-      VALUES ('$title', '$fileName', '$start_date', '$end_date', '$seats', '$price', '$description')");
+      $stmt = $conn->prepare("INSERT INTO packages (title, image, start_date, end_date, seats, price, description) VALUES (?, ?, ?, ?, ?, ?, ?)");
+      $stmt->bind_param("sssssss", $title, $fileName, $start_date, $end_date, $seats, $price, $description);
 
-      if ($insert) {
+      if ($stmt->execute()) {
         header("Location: ../views/events.php");
         echo "Data uploaded successfully.";
       } else {
@@ -39,9 +39,10 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
   if (isset($_POST['update']) && isset($_GET['package_id'])) {
     $packageId = $_GET['package_id'];
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
-      $update = $conn->query("UPDATE packages SET title='$title', image='$fileName', start_date='$start_date', end_date='$end_date', seats='$seats', price='$price', description='$description' WHERE package_id='$packageId'");
+      $stmt = $conn->prepare("UPDATE packages SET title=?, image=?, start_date=?, end_date=?, seats=?, price=?, description=? WHERE package_id=?");
+      $stmt->bind_param("sssssssi", $title, $fileName, $start_date, $end_date, $seats, $price, $description, $packageId);
 
-      if ($update) {
+      if ($stmt->execute()) {
         header("Location: ../views/events.php");
         echo "<div class='popup success'>Data updated successfully.</div>";
       } else {
@@ -55,17 +56,19 @@ if (isset($_POST['create']) || isset($_POST['update'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE' && isset($_GET['package_id'])) {
   $packageId = $_GET['package_id'];
-  $delete = $conn->query("DELETE FROM packages WHERE package_id=$packageId");
-
-  if ($delete) {
+  $stmt = $conn->prepare("DELETE FROM packages WHERE package_id = ?");
+  $stmt->bind_param("i", $packageId);
+  if ($stmt->execute()) {
     header("Location: ../views/events.php");
     http_response_code(204);
     echo json_encode(['message'=>'Package deleted successfully.']);
   } else {
-    echo "Error deleting package: " . $conn->error;
+    echo "Error deleting package: " . $stmt->error;
   }
   exit();
 }
+
+$conn->close();
 
 // if (isset($_POST["update"])) {
 //   $title = $_POST['title'];
