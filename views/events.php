@@ -12,13 +12,59 @@
   include('../config/database.php');
   include('../templates/header.php');
 
-  $query = "SELECT * FROM packages ORDER BY start_date";
-  $result = $conn->query($query);
+  // CREATE TEMPORARY TABLE unexpired AS SELECT * FROM packages WHERE end_date >= CURRENT_DATE();
+  // create temporary table expired as select * from packages where end_date < CURRENT_DATE();
+
+  // SELECT * FROM unexpired
+  // UNION
+  // select * from expired;
+  
+  // $query = "SELECT * FROM (
+    //   SELECT * FROM packages WHERE end_date >= CURRENT_DATE() ORDER BY $param
+    //   )
+    //   UNION ALL
+    //   SELECT * FROM packages WHERE end_date < CURRENT_DATE()
+    //   ";
+
+  $query = null;
+  if (isset($_GET['sortby'])) {
+    $param = $_GET['sortby'];
+    $query = "SELECT * FROM (
+      SELECT *, DATEDIFF(end_date, start_date) AS duration, 1 AS sorting_order FROM packages WHERE end_date >= CURRENT_DATE()
+      UNION
+      SELECT *, DATEDIFF(end_date, start_date) AS duration, 2 AS sorting_order FROM packages WHERE end_date < CURRENT_DATE()
+      ) AS total_packages ORDER BY sorting_order, $param";
+  } else {
+    $query = "SELECT * FROM (
+      SELECT * FROM packages WHERE end_date >= CURRENT_DATE()
+      UNION
+      SELECT * FROM packages WHERE end_date < CURRENT_DATE()
+    ) AS total_packages;";
+  }
+  try {
+    $result = $conn->query($query);
+  } catch (mysqli_sql_exception $e) {
+    var_dump($e);
+  }
 
   ?>
 
   <main>
-    <h3 class="section-heading">Ongoing Events</h3>
+    <div class="heading-container">
+      <h3 class="section-heading">Ongoing Events</h3>
+      <div class="sort-container">
+        <button class="sort-btn">Sort by
+          <span class="arrow-icon">
+            <img src="../public/assets/icons/arrow-drop-down-line.svg" alt="">
+          </span>
+        </button>
+        <ul class="sorting-options">
+          <li><a href="?sortby=price">Price</a></li>
+          <li><a href="?sortby=duration">Duration</a></li>
+          <li><a href="?sortby=seats">Seats</a></li>
+        </ul>
+      </div>
+    </div>
    
     <div class="event-cards">
       <?php
@@ -28,22 +74,23 @@
       if ($result->num_rows > 0) {
         $expiredPackages = [];
         while($package = $result->fetch_assoc()) {
-          if ($package['end_date'] < date('Y-m-d')) {
-            array_push($expiredPackages, $package);
-            continue;
-          }
+          // if ($package['end_date'] < date('Y-m-d')) {
+          //   array_push($expiredPackages, $package);
+          //   continue;
+          // }
           echo '
-          <div class="event-card">
+          <div class="event-card">'.
+          (($package['end_date'] < date('Y-m-d')) ? "<div class='expired-event'></div><span class='expired-text'>Expired</span>" : "") .'
             <div class="event-card-image">
               <img src="../public/assets/images/'.$package['image'].'" alt="">
-              <strong>'.$package['title'].'</strong>
+              <h4>'.$package['title'].'</h4>
             </div>  
             <div class="event-card-info">
               <div class="info-text">
                 <ul>
-                  <li>'.formatDate($package['start_date']).' to '.formatDate($package['end_date']).'</li>
-                  <li>Per head Rs '.$package['price'].'</li>
-                  <li>Total spots: '.$package['seats'].'</li>
+                  <li><strong>'.(new DateTime($package['start_date']))->diff(new DateTime($package['end_date']))->days.'-day trip</strong></li>
+                  <li><strong>Price</strong>: Rs '.$package['price'].'</li>
+                  <li><strong>Total seats</strong>: '.$package['seats'].'</li>
                 </ul>
               </div>
               <div class="event-card-buttons">';
@@ -61,30 +108,30 @@
           </div>
           ';
         }
-        foreach ($expiredPackages as $package) {
-          echo '
-          <div class="event-card">
-            <span class="expired-text">Expired</span>
-            <div class="expired-event"></div>
-            <div class="event-card-image">
-              <img src="../public/assets/images/'.$package['image'].'" alt="">
-              <strong>'.$package['title'].'</strong>
-            </div>  
-            <div class="event-card-info">
-              <div class="info-text">
-                <ul>
-                  <li>'.formatDate($package['start_date']).' to '.formatDate($package['end_date']).'</li>
-                  <li>Price: Rs. '.$package['price'].'</li>
-                  <li>Total spots: '.$package['seats'].'</li>
-                </ul>
-              </div>
-              <div class="event-card-buttons">
-                <a class="register-btn event-card-btn">View more</a>
-              </div> 
-            </div>
-          </div>
-          ';
-        }
+        // foreach ($expiredPackages as $package) {
+        //   echo '
+        //   <div class="event-card">
+        //     <span class="expired-text">Expired</span>
+        //     <div class="expired-event"></div>
+        //     <div class="event-card-image">
+        //       <img src="../public/assets/images/'.$package['image'].'" alt="">
+        //       <strong>'.$package['title'].'</strong>
+        //     </div>  
+        //     <div class="event-card-info">
+        //       <div class="info-text">
+        //         <ul>
+        //           <li>'.formatDate($package['start_date']).' to '.formatDate($package['end_date']).'</li>
+        //           <li>Price: Rs. '.$package['price'].'</li>
+        //           <li>Total spots: '.$package['seats'].'</li>
+        //         </ul>
+        //       </div>
+        //       <div class="event-card-buttons">
+        //         <a class="register-btn event-card-btn">View more</a>
+        //       </div> 
+        //     </div>
+        //   </div>
+        //   ';
+        // }
       }
       ?>
     </div> 

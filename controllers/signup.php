@@ -32,18 +32,22 @@ if (isset($_POST['signup-user']) || isset($_POST['signup-guide'])) {
   $gender = $_POST['gender'];
 
   $insert = null;
+  // $stmt = $conn->prepare("SELECT * FROM users WHERE user_id=?");
+  // $stmt->bind_param('i', $userId);
+  // $stmt->execute();
+  // $result = $stmt->get_result();
   if (isset($_POST['signup-user'])) {
-    $insert = "INSERT INTO users (name, mobile_number, email, password, gender, date_of_birth)
-    VALUES ('$name', '$contact', '$email', '$hashedPassword', '$gender', '$dateOfBirth')";
-  }
+    $stmt = $conn->prepare("INSERT INTO users (name, mobile_number, email, password, gender, date_of_birth) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssss", $name, $contact, $email, $hashedPassword, $gender, $dateOfBirth);
+ }
   if (isset($_POST['signup-guide'])) {
     $bio = $_POST['bio'];
-    $insert = "INSERT INTO guides (name, contact, gender, email, password, date_of_birth, bio) 
-    VALUES ('$name', '$contact', '$gender', '$email', '$password', '$dateOfBirth', '$bio')";
+    $stmt = $conn->prepare("INSERT INTO guides (name, contact, gender, email, password, date_of_birth, bio) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssss", $name, $contact, $gender, $email, $hashedPassword, $dateOfBirth, $bio);
   }
 
-  if ($conn->query($insert)) {
-    $id = $conn->insert_id;
+  if ($stmt->execute()) {
+    $id = $stmt->insert_id;
     if (isset($_POST['signup-user'])) {
       $_SESSION['user_id'] = $id;
     } elseif (isset($_POST['signup-guide'])) {

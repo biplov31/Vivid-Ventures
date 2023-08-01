@@ -1,3 +1,11 @@
+const sortBtn = document.querySelector('.sort-btn');
+const sortingOptions = document.querySelector('.sorting-options');
+sortBtn.addEventListener('click', () => {
+  sortBtn.classList.toggle('active');
+  sortingOptions.classList.toggle('show');
+})
+
+
 const deleteButtons = document.querySelectorAll('.delete-event-btn');
 Array.from(deleteButtons).forEach(deleteButton => {
   deleteButton.addEventListener('click', async () => {

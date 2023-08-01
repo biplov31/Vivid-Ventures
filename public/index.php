@@ -86,15 +86,15 @@
         echo '
         <div class="event-card">
           <div class="event-card-image">
-            <img src="../public/assets/images/'.$package["image"].'" alt="">
-            <strong>'.$package["title"].'</strong>
+            <img src="../public/assets/images/'.$package['image'].'" alt="">
+            <h4>'.$package['title'].'</h4>
           </div>  
           <div class="event-card-info">
             <div class="info-text">
               <ul>
-                <li>'.formatDate($package['start_date']).' to '.formatDate($package['end_date']).'</li>
-                <li>Price: Rs. '.$package['price'].'</li>
-                <li>Total spots: '.$package['seats'].'</li>
+                <li>'.(new DateTime($package['start_date']))->diff(new DateTime($package['end_date']))->days . '-day trip</li>
+                <li><strong>Price:</strong> Rs. '.$package['price'].'</li>
+                <li><strong>Total spots:</strong> '.$package['seats'].'</li>
               </ul>
             </div>
             <div class="event-card-buttons">
@@ -106,55 +106,13 @@
       }
     }
     ?>
-      <!-- <div class="event-card">
-        <img src="./assets/images/neha-maheen-mahfin-cK6fjg5YJEA-unsplash.jpg" alt="">
-        <strong>Annapurna Base Camp</strong>
-        <div class="event-card-info">
-          <div class="info-text">
-            <ul>
-              <li>9-day trip</li>
-              <li>Per head Rs 15000</li>
-              <li>Total spots: 12</li>
-            </ul>
-          </div>
-          <button class="register-btn"><a href="../views/event.php">Register</a></button>
-        </div>
-      </div>
-      <div class="event-card">
-        <img src="./assets/images/bina-subedi-1IN3rBMXy8U-unsplash.jpg" alt="">
-        <strong>Bandipur</strong>
-        <div class="event-card-info">
-          <div class="info-text">
-            <ul>
-              <li>5-day trip</li>
-              <li>Per head Rs 5000</li>
-              <li>Total spots: 18</li>
-            </ul>
-          </div>
-          <button class="register-btn">Register</button>
-        </div>
-      </div>
-      <div class="event-card">
-        <img src="./assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg" alt="">
-        <strong>Shey Phoksundo</strong>
-        <div class="event-card-info">
-          <div class="info-text">
-            <ul>
-              <li>12-day trip</li>
-              <li>Per head Rs 20000</li>
-              <li>Total spots: 8</li>
-            </ul>
-          </div>
-          <button class="register-btn">Register</button>
-        </div>
-      </div> -->
     </div>
   </section>
 
   <h3 class="section-heading">Need some company?</h3>
   <section class="find-company">
     <div class="find-guide">
-      <p class="find-guide-txt"><a href="../views/guides.php">Travel with a guide</p></a>
+      <a href="../views/guides.php"><p class="find-guide-txt">Travel with a guide</p></a>
       <img src="./assets/images/guide.jpg" alt="">
     </div>
     <div class="find-group">
@@ -181,14 +139,6 @@
       <div class="gallery-img img5">
         <img src="./assets/images/Lataramesor.jpg" alt="">
       </div>
-      <!-- <div class="gallery-img img6"></div>
-      <div class="gallery-img img7"> -->
-        
-      </div>
-      <!-- <div class="gallery-img img8">
-        <img src="./assets/images/guide.jpg" alt="">
-      </div> -->
-      <!-- <div class="gallery-img img9"></div> -->
     </div>
   </section>
 

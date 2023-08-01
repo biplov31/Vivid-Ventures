@@ -9,14 +9,15 @@ if (isset($_POST['login'])) {
   $password = $_POST['password'];
 
   // if a person has the same email and password in both the users and guides tables, it creats confusion. we can have different login forms or select through a radio button
-  // if package.end_data < date.today, grayed out, expired
   // sort events on the basis of cost/date/number of days
-  function checkTable($table, $email) {
-    $query = "SELECT * FROM $table WHERE email='$email' AND password='$password'";
-  }
+  // function checkTable($table, $email) {
+  //   $query = "SELECT * FROM $table WHERE email='$email' AND password='$password'";
+  // }
   
-  $query = "SELECT * FROM users WHERE email='$email'";
-  $result = $conn->query($query);
+  $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+  $stmt->bind_param("s", $email); 
+  $stmt->execute();
+  $result = $stmt->get_result();
   if ($result->num_rows > 0) {
     $record = $result->fetch_assoc();
     if (password_verify($password, $record['password'])) {
