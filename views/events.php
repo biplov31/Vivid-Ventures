@@ -29,11 +29,12 @@
   $query = null;
   if (isset($_GET['sortby'])) {
     $param = $_GET['sortby'];
+    $order = $_GET['order'] ?? '';
     $query = "SELECT * FROM (
       SELECT *, DATEDIFF(end_date, start_date) AS duration, 1 AS sorting_order FROM packages WHERE end_date >= CURRENT_DATE()
       UNION
       SELECT *, DATEDIFF(end_date, start_date) AS duration, 2 AS sorting_order FROM packages WHERE end_date < CURRENT_DATE()
-      ) AS total_packages ORDER BY sorting_order, $param";
+      ) AS total_packages ORDER BY sorting_order, $param $order";
   } else {
     $query = "SELECT * FROM (
       SELECT * FROM packages WHERE end_date >= CURRENT_DATE()
@@ -60,7 +61,8 @@
         </button>
         <ul class="sorting-options">
           <li><a href="?sortby=price">Price</a></li>
-          <li><a href="?sortby=duration">Duration</a></li>
+          <li><a href="?sortby=duration&order=asc">Duration (Low to high)</a></li>
+          <li><a href="?sortby=duration&order=desc">Duration (High to low)</a></li>
           <li><a href="?sortby=seats">Seats</a></li>
         </ul>
       </div>

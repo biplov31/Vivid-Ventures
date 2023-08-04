@@ -123,21 +123,31 @@
 
   <h3 class="section-heading">Itinerary</h3>
   <section class="itinerary">
+    <?php
+    $images = array();
+    $query = "SELECT image FROM packages ORDER BY RAND()";
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $images[] = $row;
+      }
+    }
+    ?>
     <div class="gallery-images">
       <div class="gallery-img img1">
-        <img src="./assets/images/chisapani.jpg" alt="">
+        <img src="./assets/images/<?php echo $images[0]['image'] ?>" alt="">
       </div>
       <div class="gallery-img img2">
-        <img src="./assets/images/ashok-acharya-OoB37OE165o-unsplash.jpg" alt="">
+        <img src="./assets/images/<?php echo $images[1]['image'] ?>" alt="">
       </div>
       <div class="gallery-img img3">
-        <img src="./assets/images/Jarsingh_Pauwa.jpg" alt="">
+        <img src="./assets/images/<?php echo $images[2]['image'] ?>" alt="">
       </div>
       <div class="gallery-img img4">
-        <img src="./assets/images/gaddafi-rusli-2ueUnL4CkV8-unsplash.jpg" alt="">
+        <img src="./assets/images/<?php echo $images[3]['image'] ?>" alt="">
       </div>
       <div class="gallery-img img5">
-        <img src="./assets/images/Lataramesor.jpg" alt="">
+        <img src="./assets/images/<?php echo $images[4]['image'] ?>" alt="">
       </div>
     </div>
   </section>
