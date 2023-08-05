@@ -7,9 +7,6 @@ session_start();
 // echo '</pre>';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['user_id'])) {
-  // $data = file_get_contents('php://input');
-  // $details = json_decode($data);
-  // echo $details;
   $userId = $_GET['user_id'];
   try {
     $stmt = $conn->prepare("SELECT * FROM users WHERE user_id=?");
@@ -28,26 +25,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['user_id'])) {
   }
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['package_id'])) {
-  $packageId = $_GET['package_id'];
-  $userId = $_SESSION['user_id'];
-  // $totalSeats = $conn->query("SELECT seats FROM packages WHERE package_id='$packageId'")->fetch_assoc();
-  // $bookedSeatsResult = $conn->query("SELECT package_id, count(*) AS BookedSeatsCount FROM package_registrations WHERE package_id='$packageId' GROUP BY package_id");
-  // $bookedSeats = $bookedSeatsResult->fetch_assoc();
-  // $availableSeats = $totalSeats['seats'] - ($bookedSeats['BookedSeatsCount'] ?? 0);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $data = file_get_contents('php://input');
+  $details = json_decode($data, true);
+  $packageId = $details['packageId'];
+  $userId = $details['userId'];
+
   $existingRegistration = $conn->query("SELECT * FROM package_registrations WHERE package_id='$packageId' AND user_id='$userId'");
   if ($existingRegistration->num_rows < 1) {
-    // $booking = $conn->query("INSERT INTO package_registrations (package_id, user_id) VALUES ('$packageId', '$userId')");
     $stmt = $conn->prepare("INSERT INTO package_registrations (package_id, user_id) VALUES (?, ?)");
     $stmt->bind_param('ii', $packageId, $userId);
     if ($stmt->execute()) {
-      header("refresh:3; url=../views/event.php?package_id=$packageId");
-      echo "<div class='popup success'>Registration successful.</div>"; // since we have not imported the css in this file, styles won't be applied 
+      http_response_code(200);
+      echo json_encode(['error'=>false, 'message'=>'Registration successfull.']);
+      exit();
     }    
   } else {
-    echo "You have already registered for this event.";
+    // header("refresh:3; url=../views/event.php?package_id=$packageId");
+    http_response_code(409);
+    echo json_encode(['error'=>true, 'message'=>'You have already registered for the event.']);
+    exit();
+    // echo "<div class='popup failure'>You have already registered for this event.</div>";
   }
-  // print_r($totalSeats);
+
   // $insert = $conn->query("INSERT INTO registrations (package_id, user_id) VALUES ('$packageId', '$userId')");
   // a trigger that checks before inserting whether the seats are all booked
 

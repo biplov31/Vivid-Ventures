@@ -98,6 +98,7 @@
 }
 .register-btn:hover {
   box-shadow: none;
+  outline: 2px solid steelblue;
 }
 .disabled-btn {
   pointer-events: none;
@@ -126,6 +127,10 @@
 .registered-users div span {
   padding: .4rem 1rem;
   background-color: #fefefe;
+}
+.registered-users p {
+  padding: .6rem;
+  text-align: center;
 }
 
 /* .event-page-footer {

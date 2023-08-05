@@ -13,6 +13,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vivid Ventures</title>
+  <link rel="icon" href="./assets/icons/favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="./styles/style.css">
   <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,7 +75,7 @@
     <?php
     include "../config/database.php";
     
-    $query = "SELECT * FROM packages ORDER BY start_date LIMIT 3";
+    $query = "SELECT * FROM packages WHERE end_date >= CURRENT_DATE() ORDER BY start_date LIMIT 3";
     $result = $conn->query($query);
 
     function formatDate($date) {

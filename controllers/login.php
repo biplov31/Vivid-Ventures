@@ -4,15 +4,11 @@ include "../config/database.php";
 session_start();
 
 if (isset($_POST['login'])) {
-  var_dump( basename($_SERVER['HTTP_REFERER']));
+  // var_dump( basename($_SERVER['HTTP_REFERER']));
   $email = $_POST['email'];
   $password = $_POST['password'];
 
   // if a person has the same email and password in both the users and guides tables, it creats confusion. we can have different login forms or select through a radio button
-  // sort events on the basis of cost/date/number of days
-  // function checkTable($table, $email) {
-  //   $query = "SELECT * FROM $table WHERE email='$email' AND password='$password'";
-  // }
   
   $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
   $stmt->bind_param("s", $email); 

@@ -1,4 +1,4 @@
-let video = document.querySelector('video')
+let video = document.querySelector('video');
 if (video) video.playbackRate = 0.7
 
 const nav = document.querySelector('.navbar');
