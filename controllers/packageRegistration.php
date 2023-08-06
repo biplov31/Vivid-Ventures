@@ -25,17 +25,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['user_id'])) {
   }
 }
 
+function sendConfirmationEmail($email, $packageTitle) {
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+  set_error_handler("var_dump");
+
+  // $to = "";
+  $subject = "Confirming event registration";
+  $headers = 'From: viviidventuress@gmail.com' . "\r\n" . 'Reply-To: viviidventuress@gmail.com' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+  $headers .= "MIME-Version: 1.0\r\n";
+  $headers .= "Content-type: text/html;charset=ISO-8859-1\r\n";
+  $headers .= "X-Priority: 1\r\n";
+  $message = '
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Registration</title>
+    </head>
+    <body>
+      <span style="color: royalblue; padding: .5rem; background-color: #fefefe;">
+        Thank you for registering to the event named '. $packageTitle . ', we hope your new ventures bring you with immense joy!
+      </span>
+    </body>
+    </html>
+  ';
+  if(!mail($email, $subject, $message, $headers)) {
+    echo "Failed to send email.";
+  };
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $data = file_get_contents('php://input');
   $details = json_decode($data, true);
   $packageId = $details['packageId'];
+  $packageTitle = $details['packageTitle'];
   $userId = $details['userId'];
+  $userEmail = $details['email'];
 
   $existingRegistration = $conn->query("SELECT * FROM package_registrations WHERE package_id='$packageId' AND user_id='$userId'");
   if ($existingRegistration->num_rows < 1) {
     $stmt = $conn->prepare("INSERT INTO package_registrations (package_id, user_id) VALUES (?, ?)");
     $stmt->bind_param('ii', $packageId, $userId);
     if ($stmt->execute()) {
+      sendConfirmationEmail($userEmail, $packageTitle);
       http_response_code(200);
       echo json_encode(['error'=>false, 'message'=>'Registration successfull.']);
       exit();

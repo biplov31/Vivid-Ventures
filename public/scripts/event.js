@@ -1,6 +1,6 @@
 const eventInfo = document.querySelector('.event-info');
 window.onload = () => {
-  eventInfo.style.top = "95%";
+  eventInfo.style.top = "98%";
 }
 
 const nameField = document.getElementById('name');
@@ -39,6 +39,7 @@ const registrationForm = document.querySelector('.registration-form');
 registrationForm.addEventListener('submit', async (e) => {
   e.preventDefault(); 
   const packageId = document.getElementById('package-id').value;
+  const packageTitle = document.getElementById('package-title').value;
   const userId = document.getElementById('user-id').value;
   
   const response = await fetch(`http://localhost/vivid-ventures/controllers/packageRegistration.php`, {
@@ -48,6 +49,7 @@ registrationForm.addEventListener('submit', async (e) => {
     },
     body: JSON.stringify({
       packageId,
+      packageTitle,
       userId,
       name: nameField.value,
       mobileNumber: mobileNumberField.value,
@@ -64,5 +66,6 @@ registrationForm.addEventListener('submit', async (e) => {
   
   setTimeout(() => {
     document.body.removeChild(popup);
+    window.location.reload();
   }, 4000)
 })

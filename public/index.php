@@ -75,7 +75,7 @@
     <?php
     include "../config/database.php";
     
-    $query = "SELECT * FROM packages WHERE end_date >= CURRENT_DATE() ORDER BY start_date LIMIT 3";
+    $query = "SELECT * FROM packages WHERE end_date >= CURRENT_DATE() ORDER BY package_id DESC LIMIT 3";
     $result = $conn->query($query);
 
     function formatDate($date) {

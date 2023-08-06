@@ -54,7 +54,7 @@ include "../controllers/signup.php"
         <input type="radio" name="gender" value="other" id="other">
       </div>
     </div>
-    <a href="../views/registerGuide.php" style="color: white;">Sign up as a guide</a>
+    <a href="../views/registerGuide.php" class="extra-link">Sign up as a guide</a>
     <div class="form-button">
       <button class="submit-btn" name="signup-user">
         <div class="spin"></div>

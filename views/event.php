@@ -13,7 +13,6 @@
   <?php 
   include "../config/database.php";
   include "../templates/header.php";
-  var_dump($_SESSION);
   
   if (isset($_GET['package_id'])) {
     $packageId = $_GET['package_id'];
@@ -68,7 +67,7 @@
       <div class="registered-users">
         <strong>Registered Users &#127881;</strong>
         <?php 
-        if (count($packages) > 1) {
+        if ($packages[0]['name']) {
           foreach ($packages as $package) {
             echo "<div><span>".$package['name']."</span><span>".$package['registered_at']."</span></div>";
           }
@@ -83,6 +82,7 @@
       <div class="registration-form-container">
         <p>Confirm registration with following details?</p>
         <form method="POST" action="" class="registration-form"> 
+          <input type="hidden" id="package-title" name="package_title" value="<?php echo $packages[0]['title'] ?>">   
           <input type="hidden" id="package-id" name="package_id" value="<?php echo $packages[0]['package_id'] ?>">   
           <input type="hidden" id="user-id" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">   
           <label>Name: <input type="text" name="name" id="name"></label>

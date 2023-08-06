@@ -41,7 +41,7 @@
       SELECT * FROM packages WHERE end_date >= CURRENT_DATE()
       UNION
       SELECT * FROM packages WHERE end_date < CURRENT_DATE()
-    ) AS total_packages;";
+    ) AS total_packages ORDER BY package_id DESC;";
   }
   try {
     $result = $conn->query($query);
@@ -61,10 +61,10 @@
           </span>
         </button>
         <ul class="sorting-options">
-          <li><a href="?sortby=price">Price</a></li>
+          <a href="?sortby=price"><li>Price</li></a>
           <li><a href="?sortby=duration&order=asc">Duration (Low to high)</a></li>
           <li><a href="?sortby=duration&order=desc">Duration (High to low)</a></li>
-          <li><a href="?sortby=seats">Seats</a></li>
+          <a href="?sortby=seats"><li>Seats</li></a>
         </ul>
       </div>
     </div>
@@ -83,7 +83,7 @@
           // }
           echo '
           <div class="event-card">'.
-          (($package['end_date'] < date('Y-m-d')) ? "<div class='expired-event'></div><span class='expired-text'>Expired</span>" : "") .'
+          (($package['end_date'] < date('Y-m-d')) && $_SESSION['email'] !== 'admin@admin.com' ? "<div class='expired-event'></div><span class='expired-text'>Expired</span>" : "") .'
             <div class="event-card-image">
               <img src="../public/assets/images/'.$package['image'].'" alt="">
               <h4>'.$package['title'].'</h4>

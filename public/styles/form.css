@@ -108,9 +108,11 @@ form.login {
   flex-direction: column;
   padding: 4rem;
 }
+form .extra-link {
+  color: whitesmoke;
+}
 .form-button {
   flex-basis: 100%;
-
 }
 button {
   position: relative;

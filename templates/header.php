@@ -1,10 +1,10 @@
 <header>
   <a href="../public/index.php"><div class="logo"></div></a>
-    <div class="mobile-nav-toggle">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
+  <div class="mobile-nav-toggle">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
   <nav class="navbar">
     <ul>
       <?php 

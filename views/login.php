@@ -32,6 +32,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
       <input type="password" name="password" id="password" required>
       <!-- <p class="password-error form-error"></p> -->
     </div>
+    <span>Haven't signed up? <a href="../views/signup.php" class="extra-link">Sign up</a></span>
 
     <button class="submit-btn" name="login">
       <div class="spin"></div>

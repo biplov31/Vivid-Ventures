@@ -35,6 +35,7 @@ header {
   /* background-color: rgba(43, 43, 43); */
   /* opacity: 0.4; */
   color: rgba(240, 240, 240, .8);
+  position: relative;
   /* border-bottom: 2px solid #DDD5D5; */
 }
 .index-page-header {
@@ -163,7 +164,8 @@ li.signup-options img {
     gap: .3rem;
     position: absolute;
     z-index: 9999;
-    top: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
     right: 1.5rem;
     /* width: 2rem; */
     /* background-color: var(var(--secondary-blue); */
@@ -520,7 +522,7 @@ section.itinerary {
 .popup {
   position: fixed;
   z-index: 1000;
-  top: 1rem;
+  top: .6rem;
   left: 50%;
   transform: translateX(-50%);
   padding: 1rem;
@@ -533,7 +535,8 @@ section.itinerary {
   display: none;
 }
 .popup.success {
-  background-color: aquamarine;
+  background-color: rgb(72, 209, 72);
+  padding: 1rem 1.5rem;
 }
 .popup.failure {
   background-color: #da3b00;
@@ -554,7 +557,7 @@ footer .site-logo .site-name {
 }
 footer .copyright-txt {
   font-size: .8rem;
-  margin-top: .8rem;
+  /* margin-top: .5rem; */
 }
 footer .navigation ul {
   list-style-type: none;
@@ -597,6 +600,14 @@ footer .navigation ul {
 
 /* Responsive */
 @media screen and (max-width: 590px) {
+
+  .hero-content {
+    width: 80%;
+  }
+  .hero-content button {
+    font-size: 1rem;
+
+  }
   
   .event-cards .event-card {
     width: 45%;
@@ -608,7 +619,7 @@ footer .navigation ul {
     width: 90%;
   }
   section.itinerary {
-    width: 100%;
+    width: 99%;
   }
 
   .guide-profile {

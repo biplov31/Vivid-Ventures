@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE' && isset($_GET['package_id'])) {
   exit();
 }
 
-$conn->close();
+// $conn->close();
 
 // if (isset($_POST["update"])) {
 //   $title = $_POST['title'];
