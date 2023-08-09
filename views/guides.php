@@ -16,9 +16,6 @@
 
   $read = "SELECT * FROM guides";
   $results = $conn->query($read);
-
-  
-  
   ?>  
 
 <h2 class="section-heading">Our Guides</h2>
@@ -28,7 +25,9 @@
     while ($guide = $results->fetch_assoc()) {
       echo '
       <div class="guide-profile">
-        <div class="status active">Active</div>
+        <div class="status '. ($guide['active'] == 1 ? 'active' : 'inactive') .'">
+          '. ($guide['active'] == 1 ? 'Active' : 'Inactive') .'
+        </div>
         <div class="guide-image">
           <img src="../public/assets/icons/'.($guide['gender'] == 'male' ? 'business-man-2.svg' : 'business-woman-2.svg').'" alt="">
         </div>
