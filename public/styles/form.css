@@ -76,14 +76,19 @@ input:focus {
   min-width: 100%;
   gap: .3rem;
 }
-.gender-radios {
+.gender-radios, .user-type-radios {
   display: flex;
   gap: .2rem;
   justify-content: flex-start;
   align-items: center;
 }
-.gender-radios input {
+.gender-radios input, .user-type-radios input {
   margin-right: .4rem;
+}
+.user-type-radios {
+  flex-direction: row;
+  align-items: center;
+  width: 60%;
 }
 .guide-bio, .event-description {
   width: 100%;

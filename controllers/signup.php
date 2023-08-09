@@ -54,8 +54,8 @@ if (isset($_POST['signup-user']) || isset($_POST['signup-guide'])) {
     $_SESSION['email'] = $email;
     $sessionId = session_id();
     $_SESSION['session_id'] = $sessionId;
-    header("refresh:3; url=../public/index.php");
-    echo "<div class='popup success'>Signed up successfully.</div>";
+    header("Location: http://localhost/vivid-ventures/public/index.php");
+    // echo "<div class='popup success'>Signed up successfully.</div>";
     // header("Location: ../public/index.php");
   } else {
     echo "<div class='popup failure'>Error signing up.</div>";

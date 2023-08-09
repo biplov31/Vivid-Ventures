@@ -83,7 +83,7 @@
           // }
           echo '
           <div class="event-card">'.
-          (($package['end_date'] < date('Y-m-d')) && $_SESSION['email'] !== 'admin@admin.com' ? "<div class='expired-event'></div><span class='expired-text'>Expired</span>" : "") .'
+          (($package['end_date'] < date('Y-m-d')) && isset($_SESSION['email']) && $_SESSION['email'] !== 'admin@admin.com' ? "<div class='expired-event'></div><span class='expired-text'>Expired</span>" : "") .'
             <div class="event-card-image">
               <img src="../public/assets/images/'.$package['image'].'" alt="">
               <h4>'.$package['title'].'</h4>

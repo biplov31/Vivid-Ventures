@@ -109,14 +109,14 @@
   width: 50%;
   margin: 0 auto;
   /* padding: 1rem; */
-  border: 1.5px solid #2B2B2B;
+  border: 3px solid #2B2B2B;
 }
 .registered-users strong {
   display: inline-block;
   padding: .4rem 1rem;
   width: 100%;
   text-align: center;
-  border-bottom: 1.5px solid #2B2B2B;
+  border-bottom: 3px solid #2B2B2B;
 }
 .registered-users div {
   display: grid;

@@ -101,20 +101,53 @@ nav a:hover::after {
 nav ul {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 2rem;
   list-style: none;
 }
-li.signup-options a {
-  width: 100%;
-  /* display: flex; */
+.toggle-container {
+  padding: .55rem;
+  /* width: fit-content; */
+  display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
+  gap: .4rem;
 }
-.signup-options ul {
-  display: none;
+input[role="switch"] {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
 }
-li.signup-options img {
-  width: 2rem;
+input[role="switch"]::before {
+  content: "";
+  width: 2.2rem;
+  height: 1.2rem;
+  background-color: hsl(0, 100%, 90%);
+  border-radius: 1rem;
+  transition: background-color 200ms ease-in-out;
+}
+input[role="switch"]::after {
+  position: absolute;
+  left: .1rem;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background-color: hsl(0, 80%, 50%);
+  border-radius: 50%;
+  transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
+}
+input[role="switch"]:focus-visible::before {
+  outline: 1px solid #fafafa;
+}
+input[role="switch"]:checked::after {
+  transform: translateX(100%);
+  background-color: hsl(100, 70%, 40%);
+}
+input[role="switch"]:checked::before {
+  background-color: hsl(100, 70%, 90%);
 }
 .mobile-nav-toggle {
   display: none;
@@ -152,6 +185,7 @@ li.signup-options img {
   }
   nav ul {
     flex-direction: column;
+    align-items: flex-start;
     gap: 2rem;
     padding: 8rem 3rem;
     font-size: 1.5rem;
@@ -216,7 +250,7 @@ section.hero {
 .hero-content h2 {
   font-size: 2rem;
   letter-spacing: .7rem;
-  text-shadow: 1px 0 10px rgb(3, 224, 73);
+  text-shadow: 1px 0 10px rgb(60, 252, 255);
 }
 .hero-content button {
   background-color: rgba(255, 255, 255, 0.1);

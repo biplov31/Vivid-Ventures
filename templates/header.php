@@ -9,6 +9,7 @@
     <ul>
       <?php 
       session_start();
+      include "../config/database.php";
 
       function isAdmin() {
         if (isset($_SESSION['email']) && $_SESSION['email'] == "admin@admin.com") {
@@ -17,6 +18,18 @@
       }
       if (isAdmin()) {
         echo '<li><a href="../views/createPackage.php">Create event</a></li>';
+      }
+      if (isset($_SESSION['guide_id'])) {
+        $guideId = $_SESSION['guide_id'];
+        $guideStatus = $conn->query("SELECT active FROM guides WHERE guide_id=$guideId")->fetch_assoc();
+        
+        echo '
+        <div class="toggle-container">
+          <label for="active-toggle" class="active-status-text">'. ($guideStatus['active'] == 1 ? 'Active' : 'Inactive') .'</label>
+          <input type="checkbox" id="active-toggle" role="switch" name="active-status"'. ($guideStatus['active'] == 1 ? 'checked' : '') .'>
+          <input type="hidden" id="guide-id" value="'. $guideId .'">
+        </div>
+        ';
       }
       ?>
       <li><a href="#">Explore</a></li>

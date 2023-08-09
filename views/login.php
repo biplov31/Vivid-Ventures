@@ -32,6 +32,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
       <input type="password" name="password" id="password" required>
       <!-- <p class="password-error form-error"></p> -->
     </div>
+
+    <div class="user-type-radios">
+      <label for="user">User</label>
+      <input type="radio" name="type" value="user" id="user" required>
+      <label for="guide">Guide</label>
+      <input type="radio" name="type" value="guide" id="guide">
+    </div>
+
     <span>Haven't signed up? <a href="../views/signup.php" class="extra-link">Sign up</a></span>
 
     <button class="submit-btn" name="login">

@@ -1,11 +1,3 @@
-<?php
-  session_start();
-
-  if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
-    // echo "User is logged in.";
-  }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,29 +22,37 @@
     <nav class="navbar">
       <ul>
         <?php
-          if (isset($_SESSION['email']) && $_SESSION['email'] == "admin@admin.com") {
-            echo '<li><a href="../views/createPackage.php">Create event</a></li>';
-          }
+        session_start();
+        include "../config/database.php";
+
+        if (isset($_SESSION['email']) && $_SESSION['email'] == "admin@admin.com") {
+          echo '<li><a href="../views/createPackage.php">Create event</a></li>';
+        }
+        if (isset($_SESSION['guide_id'])) {
+          $guideId = $_SESSION['guide_id'];
+          $guideStatus = $conn->query("SELECT active FROM guides WHERE guide_id=$guideId")->fetch_assoc();
+          
+          echo '
+          <div class="toggle-container">
+            <label for="active-toggle" class="active-status-text">'. ($guideStatus['active'] == 1 ? 'Active' : 'Inactive') .'</label>
+            <input type="checkbox" id="active-toggle" role="switch" name="active-status"'. ($guideStatus['active'] == 1 ? 'checked' : '') .'>
+            <input type="hidden" id="guide-id" value="'. $guideId .'">
+          </div>
+          ';
+        }
         ?>
         <li><a href="#">Explore</a></li>
         <li><a href="../views/events.php">Events</a></li>
         <?php
-          if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
-            echo '<li><a href="../controllers/logout.php">Logout</a></li>';
-          } else {
-            echo '
-            <li><a href="../views/login.php">Login</a></li>
-            <li class="signup-options">
-              <a href="../views/signup.php">Sign up<img src="./assets/images/arrow-drop-down-line.svg" alt=""></a>          
-              <ul>
-                <li>As a user</li>
-                <li>As a guide</li>
-              </ul>
-            </li>
-            ';
-          }
-        ?>
-        
+        if ((isset($_SESSION['guide_id']) || isset($_SESSION['user_id'])) && isset($_SESSION['session_id'])) {
+          echo '<li><a href="../controllers/logout.php">Logout</a></li>';
+        } else {
+          echo '
+          <li><a href="../views/login.php">Login</a></li>
+          <li><a href="../views/signup.php">Sign up</a></li>
+          ';
+        }
+        ?>     
       </ul>
     </nav>
   </header>
@@ -70,11 +70,9 @@
   </section>
 
   <section class="ongoing-events">
-    <h3 class="section-heading">Ongoing Events</h3>
+    <h3 class="section-heading">Recent Events</h3>
     <div class="event-cards">
-    <?php
-    include "../config/database.php";
-    
+    <?php    
     $query = "SELECT * FROM packages WHERE end_date >= CURRENT_DATE() ORDER BY package_id DESC LIMIT 3";
     $result = $conn->query($query);
 

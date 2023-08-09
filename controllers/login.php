@@ -7,10 +7,11 @@ if (isset($_POST['login'])) {
   // var_dump( basename($_SERVER['HTTP_REFERER']));
   $email = $_POST['email'];
   $password = $_POST['password'];
-
+  $userType = $_POST['type'];
+  $dbTable = $userType == 'user' ? 'users' : 'guides';
   // if a person has the same email and password in both the users and guides tables, it creats confusion. we can have different login forms or select through a radio button
   
-  $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+  $stmt = $conn->prepare("SELECT * FROM $dbTable WHERE email = ?");
   $stmt->bind_param("s", $email); 
   $stmt->execute();
   $result = $stmt->get_result();
@@ -19,7 +20,11 @@ if (isset($_POST['login'])) {
     if (password_verify($password, $record['password'])) {
       $sessionId = session_id();
       $_SESSION['session_id'] = $sessionId;
-      $_SESSION['user_id'] = $record['user_id'];
+      if ($userType == 'user') {
+        $_SESSION['user_id'] = $record['user_id'];
+      } else {
+        $_SESSION['guide_id'] = $record['guide_id'];
+      }
       $_SESSION['email'] = $record['email'];
       header("Location: ../public/index.php");
     } else {
