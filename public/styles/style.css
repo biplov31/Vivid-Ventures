@@ -422,7 +422,7 @@ section.hero {
   align-items: center;
   gap: .4rem;
   padding: .8rem 2rem;
-  background-color: rgba(245, 245, 220, 0.4);
+  background-color: rgba(240, 240, 240, .5);
 }
 .event-card-info .info-text ul {
   list-style: none;  

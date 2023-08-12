@@ -56,6 +56,11 @@
   /* max-height: 60%; */
   object-fit: cover;
 }
+.guide-info {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
 .guide-info .contact {
   display: flex;
   align-items: center;
@@ -72,4 +77,10 @@
 }
 .guide-info ul {
   list-style: none;
+}
+
+@media screen and (max-width: 590px) { 
+  .guide-profile {
+    width: 75%;
+  }
 }

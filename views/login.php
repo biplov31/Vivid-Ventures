@@ -38,6 +38,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
       <input type="radio" name="type" value="user" id="user" required>
       <label for="guide">Guide</label>
       <input type="radio" name="type" value="guide" id="guide">
+      <label for="admin">Admin</label>
+      <input type="radio" name="type" value="admin" id="admin">
     </div>
 
     <span>Haven't signed up? <a href="../views/signup.php" class="extra-link">Sign up</a></span>
