@@ -43,7 +43,7 @@
   background-color:rgb(229, 145, 159);
 }
 .guide-image {
-  width: 60%;
+  width: 50%;
   background-color: var(--primary-white);
   border-radius: 50%;
   outline: 1.5px solid rgb(67, 64, 64);

@@ -1,3 +1,10 @@
+<?php 
+// user could manually type in the url to go to '/views/event.php/' without the query parameter which causes errors.
+if (!isset($_GET['package_id'])) {
+  header('Location: ../public/index.php');
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
