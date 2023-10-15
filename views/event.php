@@ -11,7 +11,7 @@ if (!isset($_GET['package_id'])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vivid Ventures</title>
+  <title>Vivid Ventures - Event</title>
   <link rel="icon" href="../public/assets/icons/favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="../public/styles/style.css">
   <link rel="stylesheet" href="../public/styles/event.css">
@@ -68,7 +68,7 @@ if (!isset($_GET['package_id'])) {
         </div>
       </div>
       <div class="event-description">
-        <p><?php echo $packages[0]['description'] ?></p>
+        <p><?php echo stripslashes($packages[0]['description']) ?></p>
       </div>            
       <button class="register-btn event-card-btn <?php echo $availableSeats >= 1 ? '' : 'disabled-btn' ?>" value="<?php echo $_SESSION['user_id'] ?? '' ?>">Register now</button>   
       <div class="registered-users">

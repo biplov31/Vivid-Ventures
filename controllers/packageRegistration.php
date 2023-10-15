@@ -52,7 +52,7 @@ function sendConfirmationEmail($email, $packageTitle) {
     </html>
   ';
   if(!mail($email, $subject, $message, $headers)) {
-    echo "Failed to send email.";
+    print("Failed to send email.");
   };
 }
 
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($stmt->execute()) {
       sendConfirmationEmail($userEmail, $packageTitle);
       http_response_code(200);
-      echo json_encode(['error'=>false, 'message'=>'Registration successfull.']);
+      echo json_encode(['success'=>true, 'message'=>'Registration successfull.']);
       exit();
     }    
   } else {

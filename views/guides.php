@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vivid Ventures</title>
+  <title>Vivid Ventures - Guides</title>
   <link rel="icon" href="../public/assets/icons/favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="../public/styles/style.css">
   <link rel="stylesheet" href="../public/styles/guide.css">

@@ -58,11 +58,10 @@
   </header>
 
   <section class="hero">
-    <video muted loop autoplay >
+    <video muted loop autoplay poster="./assets/images/video_poster.jpg">
       <source src="./assets/images/mountains.mp4" type="video/mp4">
     </video>
-    <div class="video-container"></div>
-    
+
     <div class="hero-content">
       <h2>Travelling is a way of life!</h2>
       <button>Start today!</button>
@@ -115,13 +114,14 @@
       <img src="./assets/images/guide.jpg" alt="">
     </div>
     <div class="find-group">
+      <!-- users should be able to create their own events and have the community vote for them, the one with the highest vote count gets listed as an active event -->
       <p class="find-group-txt">Travel with a group of like-minded people</p>
       <img src="./assets/images/group.jpg" alt="">
     </div>
   </section>
 
-  <h3 class="section-heading">Itinerary</h3>
-  <section class="itinerary">
+  <h3 class="section-heading">Gallery</h3>
+  <section class="gallery">
     <?php
     $images = array();
     $query = "SELECT image FROM packages ORDER BY RAND()";
